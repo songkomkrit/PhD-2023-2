@@ -1,0 +1,2642 @@
+{
+	"A_AGE": {
+		"label": "Age",
+		"universe": "All Persons",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"00-79": "0-79 years of age",
+			"80": "80-84 years of age",
+			"85": "85+ years of age"
+		}
+	},
+	"A_EXPRRP": {
+		"label": "Expanded relationship code",
+		"universe": "All Persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"1": "Reference person with relatives",
+			"2": "Reference person without relatives",
+			"3": "Husband",
+			"4": "Wife",
+			"5": "Own child",
+			"7": "Grandchild",
+			"8": "Parent",
+			"9": "Brother/sister",
+			"10": "Other relative",
+			"11": "Foster child",
+			"12": "Nonrelative with relatives",
+			"13": "Partner/roommate",
+			"14": "Nonrelative without relatives"
+		}
+	},
+	"A_FAMTYP": {
+		"label": "Family type",
+		"universe": "All Persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"1": "Primary family",
+			"2": "Nonfamily householder",
+			"3": "Related subfamily",
+			"4": "Unrelated subfamily",
+			"5": "Secondary individual"
+		}	
+	},
+	"A_HGA": {
+		"label": "Educational attainment",
+		"universe": "All Persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"0": "Children",
+			"31": "Less than 1st grade",
+			"32": "1st,2nd,3rd,or 4th grade",
+			"33": "5th or 6th grade",
+			"34": "7th and 8th grade",
+			"35": "9th grade",
+			"36": "10th grade",
+			"37": "11th grade",
+			"38": "12th grade no diploma",
+			"39": "High school graduate - high school diploma or equivalent",
+			"40": "Some college but no degree",
+			"41": "Associate degree in college - occupation/vocation program",
+			"42": "Associate degree in college - academic program",
+			"43": "Bachelor's degree (for example: BA,AB,BS)",
+			"44": "Master's degree (for example: MA,MS,MENG,MED,MSW, MBA)",
+			"45": "Professional school degree (for example: MD,DDS,DVM,LLB,JD)",
+			"46": "Doctorate degree (for example: PHD,EDD)"
+		}
+	},
+	"A_MARITL": {
+		"label": "Marital status",
+		"universe": "All Persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"1": "Married - civilian spouse present",
+			"2": "Married - AF spouse present",
+			"3": "Married - spouse absent (exc.separated)",
+			"4": "Widowed",
+			"5": "Divorced",
+			"6": "Separated",
+			"7": "Never married"
+		}	
+	},
+	"A_PFREL": {
+		"label": "Primary family relationship",
+		"universe": "All Persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"0": "Not in primary family",
+			"1": "Husband",
+			"2": "Wife",
+			"3": "Own child",
+			"4": "Other relative",
+			"5": "Unmarried reference person"
+		}	
+	},
+	"A_SEX": {
+		"label": "Sex",
+		"universe": "All Persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"1": "Male",
+			"2": "Female"
+		}	
+	},
+	"P_STAT": {
+		"label": "Status of person identifier",
+		"universe": "All Persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"1": "Civilian 15+",
+			"2": "Armed forces",
+			"3": "Children 0-14"
+		}	
+	},
+	"PEAFEVER": {
+		"label": "Did you ever serve on active duty in the U.S. Armed Forces?",
+		"universe": "A_AGE greater than or equal to 17",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},
+	"PEDISDRS": {
+		"label": "Does...have difficulty dressing or bathing?",
+		"universe": "PRPERTYP = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},	
+	"PEDISEAR": {
+		"label": "Is...deaf or does ...have serious difficulty hearing?",
+		"universe": "PRPERTYP = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},	
+	"PEDISEYE": {
+		"label": "Is...blind or does...have serious difficulty seeing even when wearing glasses?",
+		"universe": "PRPERTYP = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},		
+	"PEDISOUT": {
+		"label": "Because of a physical, mental, or emotional condition, does...have difficulty doing errands along such as visiting a doctor’s office or shopping?",
+		"universe": "PRPERTYP = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},	
+	"PEDISPHY": {
+		"label": "Does...have serious difficulty Walking or climbing stairs?",
+		"universe": "PRPERTYP = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},	
+	"PEDISREM": {
+		"label": "Because of a physical, mental, or emotional condition, does...have serious difficulty concentrating, remembering, or making decisions?",
+		"universe": "PRPERTYP = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},	
+	"PRDISFLG": {
+		"label": "Does this person have any of these disability conditions?",
+		"universe": "PRPERTYP = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"-1": "Not in universe",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},	
+	"PRCITSHP": {
+		"label": "Citizenship group",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"1": "Native, born in US",
+			"2": "Native, born in PR or US outlying area",
+			"3": "Native, born abroad of US parent(s)",
+			"4": "Foreign born, US cit by naturalization",
+			"5": "Foreign born, not a US citizen"
+		}	
+	},	
+	"PRDTRACE": {
+		"label": "Race",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Demographics",
+		"subtopic": "Individual characteristics",
+		"values": {
+			"1": "White only",
+			"2": "Black only",
+			"3": "American Indian, Alaskan Native only (AI)",
+			"4": "Asian only",
+			"5": "Hawaiian/Pacific Islander only (HP)",
+			"6": "White-Black",
+			"7": "White-AI",
+			"8": "White-Asian",
+			"9": "White-HP",
+			"10": "Black-AI",
+			"11": "Black-Asian",
+			"12": "Black-HP",
+			"13": "AI-Asian",
+			"14": "AI-HP",
+			"15": "Asian-HP",
+			"16": "White-Black-AI",
+			"17": "White-Black-Asian",
+			"18": "White-Black-HP",
+			"19": "White-AI-Asian",
+			"20": "White-AI-HP",
+			"21": "White-Asian-HP",
+			"22": "Black-AI-Asian",
+			"23": "White-Black-AI-Asian",
+			"24": "White-AI-Asian-HP",
+			"25": "Other 3 race comb.",
+			"26": "Other 4 or 5 race comb."
+		}	
+	},	
+	"A_MJIND": {
+		"label": "Major industry code",
+		"universe": "A_CLSWKR = 1-7",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited labor force items",
+		"values": {
+			"0": "Not in universe, or children",
+			"1": "Agriculture, forestry,fishing, and hunting",
+			"2": "Mining",
+			"3": "Construction",
+			"4": "Manufacturing",
+			"5": "Wholesale and retail trade",
+			"6": "Transportation and utilities",
+			"7": "Information",
+			"8": "Financial activities",
+			"9": "Professional and business services",
+			"10": "Educational and health services",
+			"11": "Leisure and hospitality",
+			"12": "Other services",
+			"13": "Public administration",
+			"14": "Armed forces"
+		}	
+	},	
+	"A_MJOCC": {
+		"label": "Major occupation recode",
+		"universe": "A_CLSWKR = 1-7",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited labor force items",
+		"values": {
+			"0": "Not in universe or children",
+			"1": "Management, business, and financial occupations",
+			"2": "Professional and related occupations",
+			"3": "Service occupations",
+			"4": "Sales and related occupations",
+			"5": "Office and administrative support occupations",
+			"6": "Farming, fishing, and forestry occupations",
+			"7": "Construction and extraction occupations",
+			"8": "Installation, maintenance, and repair occupations",
+			"9": "Production occupations",
+			"10": "Transportation and material moving occupations",
+			"11": "Armed forces"
+		}	
+	},	
+	"PEIO1COW": {
+		"label": "Individual class of worker on first job",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited labor force items",
+		"values": {
+			"0": "NIU",
+			"1": "Government-federal",
+			"2": "Government-state",
+			"3": "Government - local",
+			"4": "Private, for profit",
+			"5": "Private, nonprofit",
+			"6": "Self-employed, incorporated",
+			"7": "Self-employed, unincorporated",
+			"8": "Without pay"
+		}	
+	},		
+	"PRDISC": {
+		"label": "Discouraged worker recode",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited labor force items",
+		"values": {
+			"0": "NIU",
+			"1": "Discouraged worker",
+			"2": "Conditionally interested",
+			"3": "Not available"
+		}	
+	},
+	"PRUNTYPE": {
+		"label": "Individual class of worker on first job",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited labor force items",
+		"values": {
+			"0": "NIU",
+			"1": "Job loser/on layoff",
+			"2": "Other job loser",
+			"3": "Temporary job ended",
+			"4": "Job leaver",
+			"5": "Re-entrant",
+			"6": "New-entrant"
+		}	
+	},	
+	"A_GRSWK": {
+		"label": "How much does ... usually earn per week at this job before deductions , subject to topcoding, the higher of either the amount of item 25a times Item 25c or the actual item 25d entry will be present",
+		"universe": "PRERELG=1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited earnings items",
+		"values": {
+			"0": "Not in universe or children or armed forces",
+			"0001-2885": "Dollar amount"
+		}	
+	},	
+	"A_HRLYWK": {
+		"label": "Is ... paid by the hour on this job?",
+		"universe": "PRERELG=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited earnings items",
+		"values": {
+			"0": "Not in universe or children and armed forces",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},	
+	"A_HRSPAY": {
+		"label": "How much does ... earn per hour?",
+		"universe": "A_HRLYWK=1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited earnings items",
+		"values": {
+			"0": "Not in universe or children or armed forces",
+			"0001-9999": "Entry (2 implied decimal places)"
+		}	
+	},		
+	"PRERELG": {
+		"label": "Earnings eligibility flag",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Edited earnings items",
+		"values": {
+			"0": "Not earnings eligible",
+			"1": "Earnings eligible"
+		}	
+	},	
+	"A_CIVLF": {
+		"label": "Civilian labor force",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Not in universe or children and Armed Forces",
+			"1": "In universe"
+		}	
+	},		
+	"A_CLSWKR": {
+		"label": "Class of worker",
+		"universe": "PEMLR=1-3 or (PEMLR=4-7 and person worked in the last 12 months)",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Not in universe or children and armed forces",
+			"1": "Private",
+			"2": "Federal government",
+			"3": "State government",
+			"4": "Local government",
+			"5": "Self-employed-incorporated",
+			"6": "Self-employed-not incorporated",
+			"7": "Without pay",
+			"8": "Never worked"
+		}	
+	},	
+	"A_EXPLF": {
+		"label": "Experienced labor force employment status",
+		"universe": "PEMLR=1-4",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Not in experienced labor force",
+			"1": "Employed",
+			"2": "Unemployed"
+		}	
+	},
+	"A_LFSR": {
+		"label": "Labor force status recode",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Children or Armed Forces",
+			"1": "Working",
+			"2": "With job, not at work",
+			"3": "Unemployed, looking for work",
+			"4": "Unemployed, on layoff",
+			"7": "Nilf"
+		}	
+	},
+	"A_UNCOV": {
+		"label": "On this job, is ... covered by a union or employee association contract?",
+		"universe": "A_UNMEM=2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Not in universe or children and armed forces",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},
+	"A_UNMEM": {
+		"label": "On this job, is ... a member of a labor union or of an employee association similar to a union?",
+		"universe": "PRERELG=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Not in universe or children and armed forces",
+			"1": "Yes",
+			"2": "No"
+		}	
+	},
+	"A_UNTYPE": {
+		"label": "Reason for unemployment",
+		"universe": "A_LFSR=3 or 4",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Not in universe or children and Armed Forces",
+			"1": "Job loser - on layoff",
+			"2": "Other job loser",
+			"3": "Job leaver",
+			"4": "Re-entrant",
+			"5": "New entrant"
+		}
+	},
+	"A_USLHRS": {
+		"label": "How many hrs per week does ... usually work at this job?",
+		"universe": "All persons",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"-4": "Hours vary",
+			"-1": "Not in universe",
+			"00": "None, no hours",
+			"01-99": "Entry"
+		}
+	},
+	"A_WKSCH": {
+		"label": "Labor force by time worked or lost",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Not in universe",
+			"1": "At work",
+			"2": "With job, not at work",
+			"3": "Unemployed, seeks FT",
+			"4": "Unemployed, seeks PT"
+		}
+	},
+	"A_WKSLK": {
+		"label": "Duration of unemployment",
+		"universe": "PEMLR=3 or 4",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"000": "NIU, Children or Armed Forces",
+			"001-999": "Entry"
+		}
+	},
+	"A_WKSTAT": {
+		"label": "Full/part-time status",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "Children or Armed Forces",
+			"1": "Not in labor force",
+			"2": "Full-time schedules",
+			"3": "Part-time for economic reasons, usually FT",
+			"4": "Part-time for non-economic reasons, usually PT",
+			"5": "Part-time for economic reasons, usually PT",
+			"6": "Unemployed FT",
+			"7": "Unemployed PT"
+		}
+	},
+	"PEHRUSLT": {
+		"label": "Hours usually worked last week",
+		"universe": "All persons",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"-4": "Hours vary",
+			"-1": "NIU - adult civilian",
+			"000": "NIU - children or Armed Forces or no hours",
+			"1-198": "# of hours"
+		}
+	},
+	"PEMLR": {
+		"label": "Major labor force recode",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "NIU",
+			"1": "Employed - at work",
+			"2": "Employed - absent",
+			"3": "Unemployed - on layoff",
+			"4": "Unemployed - looking",
+			"5": "Not in labor force - retired",
+			"6": "Not in labor force - disabled",
+			"7": "Not in labor force - other"
+		}
+	},
+	"PRCOW1": {
+		"label": "Class of worker recode-job 1",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "NIU",
+			"1": "Federal govt",
+			"2": "State govt",
+			"3": "Local govt",
+			"4": "Private (incl. self-employed incorp.)",
+			"5": "Self-employed, unincorp.",
+			"6": "Without pay"
+		}
+	},
+	"PRPTREA": {
+		"label": "Detailed reason for part-time",
+		"universe": "Part time workers",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "NIU",
+			"1": "Usually FT - slack work/business conditions",
+			"2": "Usually FT - seasonal work",
+			"3": "Usually FT - job started/ended during week",
+			"4": "Usually FT - vacation/personal day",
+			"5": "Usually FT - own illness/injury/medical appt",
+			"6": "Usually FT - holiday (religious or legal)",
+			"7": "Usually FT - child care problems",
+			"8": "Usually FT - other fam/pers obligations",
+			"9": "Usually FT - labor dispute",
+			"10": "Usually FT - weather affected job",
+			"11": "Usually FT - school/training",
+			"12": "Usually FT - civic/military duty",
+			"13": "Usually FT - other reason",
+			"14": "Usually PT - slack work/business conditions",
+			"15": "Usually PT - PT could only find PT work",
+			"16": "Usually PT - seasonal work",
+			"17": "Usually PT - child care problems",
+			"18": "Usually PT - other fam/pers obligations",
+			"19": "Usually PT - health/medical limitations",
+			"20": "Usually PT - school/training",
+			"21": "Usually PT - retired/social security limit on earnings",
+			"22": "Usually PT - workweek<35 hours",
+			"23": "Usually PT - other"
+		}
+	},
+	"PRWKSTAT": {
+		"label": "Full/part-time work status",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Basic CPS items",
+		"subtopic": "Labor force person recodes",
+		"values": {
+			"0": "NIU",
+			"1": "Not in labor force",
+			"2": "FT hours (35+), usually FT",
+			"3": "PT for economic reasons, usually FT",
+			"4": "PT for non-economic reasons, usually FT",
+			"5": "Not at work, usually FT",
+			"6": "PT hrs, usually PT for economic reasons",
+			"7": "PT hrs, usually PT for non-economic",
+			"8": "FT hours, usually PT for economic reasons",
+			"9": "FT hours, usually PT for non-economic reasons",
+			"10": "Not at work, usually part-time",
+			"11": "Unemployed FT",
+			"12": "Unemployed PT"
+		}
+	},
+	"CLWK": {
+		"label": "Longest job class of worker (recode)",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Private",
+			"2": "Government",
+			"3": "Self-employed",
+			"4": "Without pay",
+			"5": "Never worked"
+		}
+	},
+	"EARNER": {
+		"label": "Earner status recode",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Earner",
+			"2": "Nonearner"
+		}
+	},
+	"HRSWK": {
+		"label": "In the weeks that ... worked how may hours did ... usually work per week?",
+		"universe": "WKSWORK > 0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "1 hour",
+			"2-98": "2-98 hours",
+			"99": "99 hours plus"
+		}
+	},
+	"LJCW": {
+		"label": "Longest job class of worker",
+		"universe": "WKSWORK > 0",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Private",
+			"2": "Federal",
+			"3": "State",
+			"4": "Local",
+			"5": "Self employed incorporated, yes",
+			"6": "Self employed incorporated, no or farm",
+			"7": "Without pay"
+		}
+	},
+	"NWLKWK": {
+		"label": "How may different weeks was ... looking for work or on layoff?",
+		"universe": "NWLOOK = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "1 week",
+			"2-51": "2-51 weeks",
+			"52": "52 weeks"
+		}
+	},
+	"NWLOOK": {
+		"label": "Even though ... did not work in 20.. did spend and time trying to find a job or on layoff?",
+		"universe": "WORKYN = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"PHMEMPRS": {
+		"label": "For how many employers did ... work in 20..? if more than one at same time, only count it as one employer",
+		"universe": "WKSWORK > 0",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "One employer",
+			"2": "Two employers",
+			"3": "3 or more employers"
+		}
+	},
+	"RSNNOTW": {
+		"label": "What was the main reason ... did not work in 20..?",
+		"universe": "WORKYN = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Ill or disabled",
+			"2": "Retired",
+			"3": "Taking care of home",
+			"4": "Going to school",
+			"5": "Could not find work",
+			"6": "Other"
+		}
+	},
+	"WECLW": {
+		"label": "Longest job class of worker (persons 15+)",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Not in universe",
+			"1": "Agriculture (Wage and salary)",
+			"2": "Agriculture (Self-employed)",
+			"3": "Agriculture (Unpaid)",
+			"4": "Nonagriculture (Private household",
+			"5": "Nonagriculture (Other private)",
+			"6": "Nonagriculture (Government)",
+			"7": "Nonagriculture (Self-employed)",
+			"8": "Nonagriculture (Unpaid)",
+			"9": "Nonagriculture (Never worked)"
+		}
+	},
+	"WEWKRS": {
+		"label": "Weeks worked recode",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Full-year worker (Full time)",
+			"2": "Full-year worker (Part time)",
+			"3": "Part-year worker (Full time)",
+			"4": "Part-year worker (Part time)",
+			"5": "Part-year worker (Nonworker)"
+		}
+	},
+	"WKSWORK": {
+		"label": "During 20.. in how many weeks did ... work even for a few hours? (include paid vacation and sick leave as work)",
+		"universe": "Persons 15+ with WORKYN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "1 week",
+			"2-51": "2-51 weeks",
+			"52": "52 weeks"
+		}
+	},
+	"WORKYN": {
+		"label": "Did ... work at a job or business at any time during 20..?",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"WRK_CK": {
+		"label": "Worked last year recode, including temporary and part-time",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"WTEMP": {
+		"label": "Did ... do any temporary, part-time, or seasonal work even for a few days during 20..?",
+		"universe": "WORKYN = 2",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Work experience",
+		"subtopic": "General",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"ERN_OTR": {
+		"label": "Wage and salary money earned from other work, Y/N",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"ERN_SRCE": {
+		"label": "Source of earnings from longest job",
+		"universe": "ERN_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Wage and salary",
+			"2": "Self employment",
+			"3": "Farm self employment",
+			"4": "Without pay"
+		}
+	},
+	"ERN_VAL": {
+		"label": "How much did ... earn from this employer before deductions in 20..? what was ... net earnings from this business/ farm after expenses during 20..?",
+		"universe": "ERN_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None or Niu",
+			"-9,999 - 9,999,999": "Wages & self-employment"
+		}
+	},
+	"ERN_YN": {
+		"label": "Earnings from employer or net earnings from business/ farm after expenses from longest job during 20.. ?",
+		"universe": "WORKYN=1 or WTEMP=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"FRM_VAL": {
+		"label": "Amount of farm self-employment earnings from secondary source",
+		"universe": "FRMOTR = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None or Niu",
+			"-999999-999999": "Farm self employment"
+		}
+	},
+	"FRMOTR": {
+		"label": "Receiving farm self-employment from secondary source",
+		"universe": "ERN_OTR = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"FRSE_VAL": {
+		"label": "Total amount of farm self-employment earnings",
+		"universe": "ERN_YN=1 or FRMOTR=1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None or Niu;",
+			"-999999-999999": "Farm self employment"
+		}
+	},
+	"FRSE_YN": {
+		"label": "Receiving any farm self-employment",
+		"universe": "ERN_YN=1 or FRMOTR=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"PEARNVAL": {
+		"label": "Total persons earnings",
+		"universe": "All persons aged 15+",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None;",
+			"negative amt": "Income (loss);",
+			"positive amt": "Income"
+		}
+	},
+	"SE_VAL": {
+		"label": "Amount of own business self-employment earnings from secondary source",
+		"universe": "SEOTR = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None or niu;",
+			"-99999-999999": "Own business self employment"
+		}
+	},
+	"SEMP_VAL": {
+		"label": "Total own business self-employment earnings (combined amounts in ern-val, if ern-srce=2, and se-val)",
+		"universe": "ERN_YN=1 or SEOTR=1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None or niu;",
+			"-99999-999999": "Own business self employment"
+		}
+	},
+	"SEMP_YN": {
+		"label": "Receiving own business self-employment, y/n",
+		"universe": "ERN_YN=1 or SEOTR=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"SEOTR": {
+		"label": "Receiving own business self-employment, y/n",
+		"universe": "ERN_YN=1 or SEOTR=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"WAGEOTR": {
+		"label": "Receiving wage and salary earnings from other employers, y/n",
+		"universe": "ERN_OTR = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"WS_VAL": {
+		"label": "Amount of wage and salary earnings from other employers",
+		"universe": "ERN_OTR = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None or niu;",
+			"1-9999999": "Wage and salary"
+		}
+	},
+	"WSAL_VAL": {
+		"label": "Total wage and salary earnings (combined amounts in ern-val, if ern-srce=1, and ws-val)",
+		"universe": "ERN_YN=1 or WAGEOTR=1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "None or niu;",
+			"1-9999999": "Wage and salary"
+		}
+	},
+	"WSAL_YN": {
+		"label": "Receiving wage and salary earnings",
+		"universe": "ERN_YN=1 or WAGEOTR=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Earnings",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"ANN_VAL": {
+		"label": "Retirement income, annuities amount",
+		"universe": "ANN_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"-1": "Niu",
+			"0-999999": "Dollar amount"
+		}
+	},
+	"ANN_YN": {
+		"label": "Retirement income, annuities, y/n",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"CAP_VAL": {
+		"label": "Capital gains value",
+		"universe": "CAP_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Captial gains amount"
+		}
+	},
+	"CAP_YN": {
+		"label": "Yes/no answer to ‘Did you receive capital gain from your shares of stock or mutual fund?’",
+		"universe": "DIV_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"DBTN_VAL": {
+		"label": "Total amount of retirement distributions received (dst_val1 + dst_val2)",
+		"universe": "DST_VAL1>0 OR DST_VAL2>0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-9999999": "Dollar amount"
+		}
+	},
+	"DIS_SC1": {
+		"label": "What was the source of disability income?",
+		"universe": "DIS_YN=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Worker's compensation",
+			"2": "Company or union disability",
+			"3": "Federal government disability",
+			"4": "Us military retirement disability",
+			"5": "State or local gov't employee disability",
+			"6": "Us railroad retirement disability",
+			"7": "Accident or disability insurance",
+			"8": "Blacklung miners disability",
+			"9": "State temporary sickness",
+			"10": "Other or don't know"
+		}
+	},
+	"DIS_SC2": {
+		"label": "What was the source of disability income?",
+		"universe": "DIS_YN=1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Worker's compensation",
+			"2": "Company or union disability",
+			"3": "Federal government disability",
+			"4": "Us military retirement disability",
+			"5": "State or local gov't employee disability",
+			"6": "Us railroad retirement disability",
+			"7": "Accident or disability insurance",
+			"8": "Blacklung miners disability",
+			"9": "State temporary sickness",
+			"10": "Other or don't know"
+		}
+	},
+	"DIS_VAL1": {
+		"label": "How much did ... receive (source type) during 20.. ?",
+		"universe": "DIS_SC1>0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Disability income"
+		}
+	},
+	"DIS_VAL2": {
+		"label": "How much did ... receive (source type) during 20.. ?",
+		"universe": "DIS_SC2>0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Disability income"
+		}
+	},
+	"DIS_YN": {
+		"label": "Other than social security did ... receive any income in 20.. as a result of health problems?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"DIV_VAL": {
+		"label": "How much did ... receive in dividends from stocks or mutual funds during 20.. ?",
+		"universe": "DIV_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Dividends"
+		}
+	},
+	"DIV_YN": {
+		"label": "Did ... receive dividends?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"DSAB_VAL": {
+		"label": "Total amount of disability income received, combined amounts in edited sources one and two",
+		"universe": "DIS_VAL1>0 OR DIS_VAL2>0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Disability income"
+		}
+	},
+	"DST_SC1": {
+		"label": "Retirement income, distribution source 1",
+		"universe": "DST_VAL1 > 0 and a_age >= 58",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "401k account",
+			"2": "403b account",
+			"3": "Roth ira",
+			"4": "Regular ira",
+			"5": "Keogh plan",
+			"6": "Sep plan (simplified employee pension)",
+			"7": "Other type of retirement account"
+		}
+	},
+	"DST_SC1_YNG": {
+		"label": "Retriement Distribution source 1, person under age 58",
+		"universe": "DST_YN_YNG = 1 and a_age < 58",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "401k account",
+			"2": "403b account",
+			"3": "Roth ira",
+			"4": "Regular ira",
+			"5": "Keogh plan",
+			"6": "Sep plan (simplified employee pension)",
+			"7": "Other type of retirement account"
+		}
+	},
+	"DST_SC2": {
+		"label": "Retirement income, distribution source 2",
+		"universe": "DST_VAL2 > 0 and a_age >= 58",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "401k account",
+			"2": "403b account",
+			"3": "Roth ira",
+			"4": "Regular ira",
+			"5": "Keogh plan",
+			"6": "Sep plan (simplified employee pension)",
+			"7": "Other type of retirement account"
+		}
+	},
+	"DST_SC2_YNG": {
+		"label": "Retriement Distribution source 2, person under age 58",
+		"universe": "DST_VAL_YNG > 0 and a_age < 58",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "401k account",
+			"2": "403b account",
+			"3": "Roth ira",
+			"4": "Regular ira",
+			"5": "Keogh plan",
+			"6": "Sep plan (simplified employee pension)",
+			"7": "Other type of retirement account"
+		}
+	},
+	"DST_VAL1": {
+		"label": "Retirement income amount, distribution source 1",
+		"universe": "DST_SC1 = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1- 999,999": "Amount withdrawn or distributed"
+		}
+	},
+	"DST_VAL1_YNG": {
+		"label": "Retriement Distribution amount 1, under age 58",
+		"universe": "DST_SC1_YNG = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1- 999,999": "Amount withdrawn or distributed"
+		}
+	},
+	"DST_VAL2": {
+		"label": "Retirement income amount, distribution source 2",
+		"universe": "DST_SC2 = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1- 999,999": "Amount withdrawn or distributed"
+		}
+	},
+	"DST_VAL2_YNG": {
+		"label": "Retriement Distribution amount 2, under age 58",
+		"universe": "DST_SC2_YNG = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1- 999,999": "Amount withdrawn or distributed"
+		}
+	},
+	"DST_YN": {
+		"label": "Retirement income distribution y/n",
+		"universe": "Persons aged 58 and over (a_age >= 58)",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"DST_YN_YNG": {
+		"label": "Retriement Distribution Recipiency, person under age 58",
+		"universe": "Persons under age 58 (a_age < 58)",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"ED_VAL": {
+		"label": "Total amount of educational assistance received (combined amounts in pell grant and other educational) assistance during 20.. ?",
+		"universe": "ED_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1- 99,999": "Dollar amount"
+		}
+	},
+	"ED_YN": {
+		"label": "Did ... receive educational assistance?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"FIN_VAL": {
+		"label": "How much did ... receive in financial assistance income during 20.. ?",
+		"universe": "FIN_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Financial assistance"
+		}
+	},
+	"FIN_YN": {
+		"label": "Did ... receive financial assistance?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"INT_VAL": {
+		"label": "Edited total combined interest income",
+		"universe": "INT_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu;",
+			"1- 999,999": "Dollar amount"
+		}
+	},
+	"INT_YN": {
+		"label": "Edited total combined interest income, y/n",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"OED_TYP1": {
+		"label": "Source 1 other than gi bill received (OED_TYP1- source of other government assistance)",
+		"universe": "ED_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"OED_TYP2": {
+		"label": "Source 2 other than gi bill received (OED_TYP2- scholarships, grants etc. from the school)",
+		"universe": "ED_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"OED_TYP3": {
+		"label": "Source other than gi bill received (OED_TYP3- other assistance (employers friends, etc.)",
+		"universe": "ED_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"OI_OFF": {
+		"label": "Other income sources",
+		"universe": "OI_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Social security",
+			"2": "Private pensions",
+			"3": "Afdc",
+			"4": "Other public assistance",
+			"5": "Interest",
+			"6": "Dividends",
+			"7": "Rents or royalties",
+			"8": "Estates or trusts",
+			"9": "State disability payments (worker's comp)",
+			"10": "Disability payments (own insurance)",
+			"11": "Unemployment compensation",
+			"12": "Strike benefits",
+			"13": "Annuities or paid up insurance policies",
+			"14": "Not income",
+			"15": "Longest job",
+			"16": "Wages or salary",
+			"17": "Nonfarm self-employment",
+			"18": "Farm self-employment",
+			"19": "Anything else",
+			"20": "Alimony"
+		}
+	},
+	"OI_VAL": {
+		"label": "How much did ... receive in other incomes",
+		"universe": "OI_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Other income"
+		}
+	},
+	"OI_YN": {
+		"label": "Did ... receive cash income not already covered from any other source?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"PEN_SC1": {
+		"label": "Retirement income, pension source 1",
+		"universe": "PEN_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Company pension",
+			"2": "Union pension",
+			"3": "Federal government pension",
+			"4": "State government pension",
+			"5": "Local government pension",
+			"6": "Us military pension",
+			"7": "Us railroad retirement",
+			"8": "Other"
+		}
+	},
+	"PEN_SC2": {
+		"label": "Retirement income, pension source 2",
+		"universe": "PEN_VAL2 > 0",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Company pension",
+			"2": "Union pension",
+			"3": "Federal government pension",
+			"4": "State government pension",
+			"5": "Local government pension",
+			"6": "Us military pension",
+			"7": "Us railroad retirement",
+			"8": "Other"
+		}
+	},
+	"PEN_VAL1": {
+		"label": "Retirement income amount, pension source 1",
+		"universe": "PEN_SC1 > 0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999,999": "Pension income"
+		}
+	},
+	"PEN_VAL2": {
+		"label": "Retirement income amount, pension source 2",
+		"universe": "PEN_SC2 > 0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999,999": "Pension income"
+		}
+	},
+	"PEN_YN": {
+		"label": "Retirement income, pension y/n",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"PNSN_VAL": {
+		"label": "Total combined amount of pension income received from all pension sources",
+		"universe": "PEN_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-9,999,999": "Retirement income"
+		}
+	},
+	"PTOTVAL": {
+		"label": "Total persons income",
+		"universe": "All Persons aged 15+",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None",
+			"negative amt": "Income (loss)",
+			"positive amt": "Income"
+		}
+	},
+	"RESNSS1": {
+		"label": "What were the reasons (you/name) (was/were) getting Social Security Income last year?",
+		"universe": "SS_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Retired",
+			"2": "Disabled (adult or child)",
+			"3": "Widowed",
+			"4": "Spouse",
+			"5": "Surviving child",
+			"6": "Dependent child",
+			"7": "On behalf of surviving, dependent, or disabled child(ren)",
+			"8": "Other (adult or child)"
+		}
+	},
+	"RESNSS2": {
+		"label": "What were the reasons (you/name) (was/were) getting Social Security Income last year?",
+		"universe": "SS_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Retired",
+			"2": "Disabled (adult or child)",
+			"3": "Widowed",
+			"4": "Spouse",
+			"5": "Surviving child",
+			"6": "Dependent child",
+			"7": "On behalf of surviving, dependent, or disabled child(ren)",
+			"8": "Other (adult or child)"
+		}
+	},
+	"RESNSSI1": {
+		"label": "What were the reasons (you/name) (was/were) getting Supplemental Security Income last year?",
+		"universe": "SSI_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Disabled (adult or child)",
+			"2": "Blind (adult or child)",
+			"3": "On behalf of a disabled child",
+			"4": "On behalf of a blind child",
+			"5": "Other (adult or child)"
+		}
+	},
+	"RESNSSI2": {
+		"label": "What were the reasons (you/name) (was/were) getting Supplemental Security Income last year?",
+		"universe": "SSI_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Disabled (adult or child)",
+			"2": "Blind (adult or child)",
+			"3": "On behalf of a disabled child",
+			"4": "On behalf of a blind child",
+			"5": "Other (adult or child)"
+		}
+	},
+	"RETCB_VAL": {
+		"label": "Retirement contributiion, amount",
+		"universe": "RETCB_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-99999": "Amount contributed"
+		}
+	},
+	"RETCB_YN": {
+		"label": "Retirement contribution, y/n",
+		"universe": "All people 15 years and over",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"RINT_SC1": {
+		"label": "Interest income, retirement source 1",
+		"universe": "RINT_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "401k account",
+			"2": "403b account",
+			"3": "Roth ira",
+			"4": "Regular ira",
+			"5": "Keogh plan",
+			"6": "Sep plan (simplified employee pension)",
+			"7": "Other type of retirement account"
+		}
+	},
+	"RINT_SC2": {
+		"label": "Interest income, retirement source 2",
+		"universe": "RINT_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "401k account",
+			"2": "403b account",
+			"3": "Roth ira",
+			"4": "Regular ira",
+			"5": "Keogh plan",
+			"6": "Sep plan (simplified employee pension)",
+			"7": "Other type of retirement account"
+		}
+	},
+	"RINT_VAL1": {
+		"label": "Interest income amt, retirement source 1",
+		"universe": "RINT_SC1 > 0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Ret interest income"
+		}
+	},
+	"RINT_VAL2": {
+		"label": "Interest income amt, retirement source 2",
+		"universe": "RINT_SC2 > 0",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Ret interest income"
+		}
+	},
+	"RINT_YN": {
+		"label": "Interest income - retirement, y/n",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"RNT_VAL": {
+		"label": "How much did ... receive in income from rent after expenses during 20..?",
+		"universe": "RNT_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"-9999-999999": "Rental income"
+		}
+	},
+	"RNT_YN": {
+		"label": "Did ... own any land, property, rented to others, or receive income from royalties, roomers or boarders, or from estates or trusts?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"SRVS_VAL": {
+		"label": "Total amount of survivor's income received (combined amounts in edited sources sur_val1 and sur_val2 plus the unedited sources 3 & 4 starting in 1995)",
+		"universe": "SUR_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Income amount"
+		}
+	},
+	"SS_VAL": {
+		"label": "How much did ... receive in social security payments during 20.. ?",
+		"universe": "SS_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-99999": "Social security"
+		}
+	},
+	"SS_YN": {
+		"label": "Who received social security payments either for themselves or as combined payments with other family members?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"SSI_VAL": {
+		"label": "How much did ... receive in supplemental security income during 20..?",
+		"universe": "SSI_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-99999": "Supplemental security income"
+		}
+	},
+	"SSI_YN": {
+		"label": "Did ... received ssi?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"STRKUC": {
+		"label": "At any time during 20.. did ... receive any union unemployment or strike benefits?",
+		"universe": "UC_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"SUBUC": {
+		"label": "At any time during 20.. did ... receive any supplemental unemployment benefits?",
+		"universe": "UC_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"SUR_SC1": {
+		"label": "What was the source of this other widow or survivor income?",
+		"universe": "SUR_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1": "Company or union survivor pension",
+			"2": "Federal government",
+			"3": "Us military retirement survivor pension",
+			"4": "State or local gov't survivor pension",
+			"5": "Us railroad retirement survivor pension",
+			"6": "Worker compensation survivor",
+			"7": "Black lung",
+			"8": "Regular payments from estates or trusts",
+			"9": "Regular payments from annuities or paid-up life insurance",
+			"10": "Other or don't know"
+		}
+	},
+	"SUR_SC2": {
+		"label": "What was the source of this other widow or survivor income?",
+		"universe": "SUR_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1": "Company or union survivor pension",
+			"2": "Federal government",
+			"3": "Us military retirement survivor pension",
+			"4": "State or local gov't survivor pension",
+			"5": "Us railroad retirement survivor pension",
+			"6": "Worker compensation survivor",
+			"7": "Black lung",
+			"8": "Regular payments from estates or trusts",
+			"9": "Regular payments from annuities or paid-up life insurance",
+			"10": "Other or don't know"
+		}
+	},
+	"SUR_VAL1": {
+		"label": "How much did ... receive (survivor source type) during 20.. ?",
+		"universe": "SUR_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999,999": "Survivor's income"
+		}
+	},
+	"SUR_VAL2": {
+		"label": "How much did ... receive (source type) during 20.. ?",
+		"universe": "SUR_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999,999": "Survivor's income"
+		}
+	},
+	"SUR_YN": {
+		"label": "During 20.. did ... receive any survivor benefits such as widow's pensions, estates, trusts, insurance annuities, or other survivor's income?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"TRDINT_VAL": {
+		"label": "Interest amount, exlcuding retirment account interest",
+		"universe": "INT_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"all": "Dollar value"
+		}
+	},
+	"UC_VAL": {
+		"label": "How much did ... receive in unemployment benefits during 20..?",
+		"universe": "UC_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-99999": "Unemployment compensation"
+		}
+	},
+	"UC_YN": {
+		"label": "Any type of unemployment compensation? (Combination of subuc, strkuc, and uctot_yn)",
+		"universe": "UC_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"VET_TYP1": {
+		"label": "What type of veterans payments did .... receive? (VET_TYP1- disability compensation?)",
+		"universe": "VET_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"VET_TYP2": {
+		"label": "What type of veterans payments did .... receive? (VET_TYP2- survivor benefits?)",
+		"universe": "VET_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"VET_TYP3": {
+		"label": "What type of veterans payments did .... receive? (VET_TYP3- veteran's pension?)",
+		"universe": "VET_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"VET_TYP4": {
+		"label": "What type of veterans payments did .... receive? (VET_TYP4- education assistance?)",
+		"universe": "VET_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"VET_TYP5": {
+		"label": "What type of veterans payments did .... receive? (VET_TYP5- other veteran's payments?)",
+		"universe": "VET_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"VET_VAL": {
+		"label": "How much did ... receive from veterans' administration during 20..?",
+		"universe": "VET_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-999999": "Veterans' payments"
+		}
+	},
+	"VET_YN": {
+		"label": "Did ... receive veterans' payments?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"WC_TYPE": {
+		"label": "What was source of these payments?",
+		"universe": "WC_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Not in universe",
+			"1": "State worker's compensation",
+			"2": "Employer or employers insurance",
+			"3": "Own insurance",
+			"4": "Other"
+		}
+	},
+	"WC_VAL": {
+		"label": "How much compensation did ... receive during 20..?",
+		"universe": "WC_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "None or niu",
+			"1-99999": "Worker's compensation"
+		}
+	},
+	"WC_YN": {
+		"label": "During 20.. did ... receive any worker's compensation payments or other payments as a result of a job related injury or illness?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Other income",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"PAW_TYP": {
+		"label": "What type of program did... receive CASH assistance?",
+		"universe": "PAW_YN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Non-cash benefits",
+		"values": {
+			"0": "Niu",
+			"1": "TANF/AFDC",
+			"2": "Other",
+			"3": "Both"
+		}
+	},
+	"PAW_VAL": {
+		"label": "How much did ... receive in public assistance or welfare during 20..?",
+		"universe": "PAW_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Non-cash benefits",
+		"values": {
+			"0": "None or niu",
+			"1-99999": "Public assistance"
+		}
+	},
+	"PAW_YN": {
+		"label": "At any time during 20.., even for one month, did... receive an CASH assistance from a state or county welfare program such as (State program name fill)?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Non-cash benefits",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"PENINCL": {
+		"label": "Was ... included in that plan?",
+		"universe": "PENPLAN = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Non-cash benefits",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"PENPLAN": {
+		"label": "Other than social security did the employer or union that ... worked for in 20.. have a pension or other type of retirement plan?",
+		"universe": "WRK_CK = 1",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Non-cash benefits",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"WICYN": {
+		"label": "Who received WIC?",
+		"universe": "Adult female",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Non-cash benefits",
+		"values": {
+			"0": "Niu",
+			"1": "Received WIC",
+			"2": "Did not receive WIC"
+		}
+	},
+	"CHCARE_YN": {
+		"label": "Paid child care was needed for this child?",
+		"universe": "Persons age 15+ with children",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Supplemental poverty measure",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"CHELSEW_YN": {
+		"label": "Does this person have a child living outside the household?",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Supplemental poverty measure",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"CHELSEW_YN": {
+		"label": "Does this person have a child living outside the household?",
+		"universe": "All persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Supplemental poverty measure",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"CHSP_VAL": {
+		"label": "What is the annual amount of child support paid?",
+		"universe": "CHSP_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Supplemental poverty measure",
+		"values": {
+			"0": "Niu",
+			"1-99999": "Amount paid in child support"
+		}
+	},
+	"CHSP_YN": {
+		"label": "Is this person required to pay child support?",
+		"universe": "CHELSEW_YN",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Supplemental poverty measure",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"CSP_VAL": {
+		"label": "How much did ... receive in child support payments?",
+		"universe": "CHSP_YN = 1",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Supplemental poverty measure",
+		"values": {
+			"0": "None or niu",
+			"1-99999": "Child support"
+		}
+	},
+	"CSP_YN": {
+		"label": "Did ... receive child support payments?",
+		"universe": "All Persons aged 15+",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Supplemental poverty measure",
+		"values": {
+			"0": "Niu",
+			"1": "Yes",
+			"2": "No"
+		}
+	},
+	"ACTC_CRD": {
+		"label": "Additional child tax credit",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"1-99999": "Dollar amount"
+		}
+	},
+	"AGI": {
+		"label": "Adjusted gross income",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"-9999-9999999": "Dollar amount"
+		}
+	},
+	"CTC_CRD": {
+		"label": "Child tax credit",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"1-99999": "Dollar amount"
+		}
+	},
+	"EIT_CRED": {
+		"label": "Earn income tax credit",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"1-9999": "Dollar amount"
+		}
+	},
+	"FED_RET": {
+		"label": "Federal retirement payroll deduction",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"1-999999": "Dollar amount"
+		}
+	},
+	"FEDTAX_AC": {
+		"label": "Federal income tax liability, after all credits",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"-9999-9999999": "Dollar amount"
+		}
+	},
+	"FEDTAX_BC": {
+		"label": "Federal income tax liability, before credits",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"-9999-9999999": "Dollar amount"
+		}
+	},
+	"FICA": {
+		"label": "Social security retirement payroll deduction",
+		"universe": "All persons",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"1-99999": "Dollar amount"
+		}
+	},
+	"FILESTAT": {
+		"label": "Tax filer status",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"1": "Joint, both<65",
+			"2": "Joint, one ><65 & one 65+",
+			"3": "Joint, both 65+",
+			"4": "Head of household",
+			"5": "Single",
+			"6": "Non-filer"
+		}
+	},
+	"MARG_TAX": {
+		"label": "Marginal tax rate",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"1-99": "Marginal rate"
+		}
+	},
+	"PRSWKXPNS": {
+		"label": "Work expenses",
+		"universe": "A_AGE > 17 or HHDFMX = 1,2,46, or 47",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"1-1999": "Dollar amount"
+		}
+	},
+	"STATETAX_A": {
+		"label": "State income tax liability, after all credits",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"-9999-9999999": "Dollar amount"
+		}
+	},
+	"STATETAX_B": {
+		"label": "State income tax liability, before credits",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"-9999-9999999": "Dollar amount"
+		}
+	},
+	"TAX_INC": {
+		"label": "Taxable income amount",
+		"universe": "Tax unit head or dependent filer",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Income",
+		"subtopic": "Tax model items",
+		"values": {
+			"0": "None",
+			"-9999-9999999": "Dollar amount"
+		}
+	},
+	"PERLIS": {
+		"label": "Poverty level of persons (Subfamily members have primary family recode)",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Poverty",
+		"subtopic": "Poverty",
+		"values": {
+			"-1": "Not in poverty universe",
+			"1": "Below poverty level",
+			"2": "100 - 124 percent of the poverty level",
+			"3": "125 - 149 percent of the poverty level",
+			"4": "150 and above the poverty level"
+		}
+	},
+	"POV_UNIV": {
+		"label": "Poverty universe flag",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Poverty",
+		"subtopic": "Poverty",
+		"values": {
+			"0": "Not in poverty universe",
+			"1": "In poverty universe"
+		}
+	},
+	"HEA": {
+		"label": "Health status",
+		"universe": "All persons",
+		"type": "Categorical",
+		"role": "Independent",
+		"topic": "Health insurance",
+		"subtopic": "Health status",
+		"values": {
+			"1": "Excellent",
+			"2": "Very good",
+			"3": "Good",
+			"4": "Fair",
+			"5": "Poor"
+		}
+	},
+	"SPM_ACTC": {
+		"label": "SPM units Additional Child Tax Credit",
+		"universe": "All persons",
+		"type": "Continuous",
+		"role": "Independent",
+		"topic": "Supplemental poverty measure",
+		"subtopic": "SPM unit characteristics",
+		"values": {
+			"0-99999": "Dollar amount"
+		}
+	}
+}
