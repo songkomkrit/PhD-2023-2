@@ -1,4 +1,4 @@
- /*********************************************
+/*********************************************
  * OPL 22.1.1.0 Model
  * Author: songkomkrit
  * Creation Date: Jul 20, 2024 at 10:09:02 PM
@@ -19,29 +19,21 @@
 /*********************************************
  * INPUTS
  *********************************************/ 
-int mdimold = 8;	// dimension			// 3 or 184 or 8
-int mdimcontold = 3; // continuous dimension	// 2 or 66 or 3
+int mdim = 8;	// dimension			// 3 or 184 or 8
+int mdimcont = 3; // continuous dimension	// 2 or 66 or 3
 //int mdimcat = 5; // categorical dimension	// 1 or 118 or 5
 int mN = 100;	// number of instances	// 8 or 157681 or 100
 int mn = 4;		// the value of n = (number of classes) - 1		// 1 or 4 or 4
 
-int mselcont = 2;	// number of selected continuous dimensions
-int mselcat = 4;	// number of selected categorical dimensions
-
-int mexccont = mdimcontold - mselcont;	// number of excluded continuous dimensions
-int mdim = mdimold - mexccont;
-int mdimcont = mselcont;
-
 range mDS = 1..mdim;
-range mDSCONTOLD = 1..mdimcontold;	// old continuous
-range mDSCONT = 1..mselcont;	// new continuous
-range mDSCAT = mdimcont+1..mdim;	// shifted categorical
+range mDSCONT = 1..mdimcont;
+range mDSCAT = mdimcont+1..mdim;
 range mIS = 1..mN;
-float mxcontold[mIS][mDSCONTOLD];	// x along continuous dimensions
+float mxcont[mIS][mDSCONT];	// x along continuous dimensions
 int mxcat[mIS][mDSCAT]; // x along categorical dimensions
 int my[mIS];
 int mmaxlab[mDSCAT];	// maximum labels for categorical dimensions
-float mM[mDS];	// big-M for all new/shifted dimensions (continuous and categorical)
+float mM[mDSCONT];	// big-M for continuous dimensions
 float mm[mDSCONT];	// small-m for continuous dimensions
 int mp[mDS];	// number of cuts along axes
 int mcoef[mDS];
@@ -77,15 +69,15 @@ tuple CatPairType {	// index for categorical group
 main {
 	var curtime5 = Opl.round((new Date()).getTime()/1000) % 100000; // in seconds
 	
-	var infilename = "input/seltrain20num8each20noh.csv";			// input filename
-	var varfilename = "input/selproc20num8co2ca2cutinfonoh.csv";			// variable filename (6 columns)
+	var infilename = "input/testin.csv";			// input filename
+	var varfilename = "input/testvar.csv";			// variable filename (6 columns)
 	var prefixout = "output/" + curtime5 + "-";		// prefix of all output files
 	prefixout += infilename.split("/")[1].split(".")[0] + "-";
 
 	// Inputs
 	//var M0 = 500;			// big-M (float)
 	var m0 = 0.01;			// small-m (float)
-	var p0 = 2;				// max number of cuts along continuous axis (integer)
+	//var p0 = 2;				// maximal number of cuts along each axis (integer) (not input)
 	
 	// Cplex limit parameters
 	var tlim = 60*5;		// cplex time limit (in seconds)
@@ -100,33 +92,23 @@ main {
 	var outinstance = new IloOplOutputFile(prefixout + "export-predict-instance" + postfixout);
 	var outcutcont = new IloOplOutputFile(prefixout + "export-cutcont-full" + postfixout);
 	var outcutcat = new IloOplOutputFile(prefixout + "export-cutcat-full" + postfixout);
-	// The existence of region is not checked here
-	// In fact, it can be check through enumeration of certain binary representations
 	var outregion = new IloOplOutputFile(prefixout + "export-predict-region" + postfixout);
-	var outselvarint = new IloOplOutputFile(prefixout + "export-select-var-int" + postfixout); // selected variables (integer)
-	var outselvarstr = new IloOplOutputFile(prefixout + "export-select-var-str" + postfixout); // selected variables (string)
 	
 	// OPL
-	var source = new IloOplModelSource("p-mixed-cuts-sel.mod");
+	var source = new IloOplModelSource("p-mixed-cuts.mod");
 	var cplex = new IloCplex();
 	var def = new IloOplModelDefinition(source);
 	var opl = new IloOplModel(def,cplex);
 	var data = new IloOplDataElements();
 	
-	data.dimold = thisOplModel.mdimold;
-	data.dimcontold = thisOplModel.mdimcontold;
 	data.dim = thisOplModel.mdim;
 	data.dimcont = thisOplModel.mdimcont;
 	//data.dimcat = thisOplModel.mdimcat;
 	data.N = thisOplModel.mN;
 	data.n = thisOplModel.mn;
-	data.xcontold = thisOplModel.mxcontold;
+	data.xcont = thisOplModel.mxcont;
 	data.xcat = thisOplModel.mxcat;
 	data.y = thisOplModel.my;
-	
-	data.selcont = thisOplModel.mselcont;
-	data.selcat = thisOplModel.mselcat;
-	data.exccont = thisOplModel.mexccont;
 	
 	data.m = thisOplModel.mm;
 	for (var j=1; j<=data.dimcont; j++)
@@ -135,38 +117,27 @@ main {
 	var f = new IloOplInputFile(infilename);		// training dataset
 	for (var i=1; i<=data.N; i++) {
 		var myitem = f.readline().split(",");
-		data.y[i] = Opl.intValue(myitem[data.dimold]);
-		for (var j=1; j<=data.dimcontold; j++)
-			data.xcontold[i][j] = Opl.floatValue(myitem[j-1]);
-		for (var j=data.dimcontold+1; j<=data.dimold; j++)
-			data.xcat[i][j-data.exccont] = Opl.intValue(myitem[j-1]);
+		data.y[i] = Opl.intValue(myitem[data.dim]);
+		for (var j=1; j<=data.dimcont; j++)
+			data.xcont[i][j] = Opl.floatValue(myitem[j-1]);
+		for (var j=data.dimcont+1; j<=data.dim; j++)
+			data.xcat[i][j] = Opl.intValue(myitem[j-1]);
 	}
 	f.close();
-
-	data.p = thisOplModel.mp;
-	for (var j=1; j<=data.dimcont; j++)
-		data.p[j] = p0;
 	
+	data.p = thisOplModel.mp;
 	data.M = thisOplModel.mM;
 	data.maxlab = thisOplModel.mmaxlab;
-	var M0cont = 1;
 	var f = new IloOplInputFile(varfilename);		// variable info
-	for (var j=1; j<=data.dimold; j++) {
+	for (var j=1; j<=data.dim; j++) {
 		var myitem = f.readline().split(",");
-		if (j <= data.dimcontold) {
-			var curMcont = 1 + Opl.maxl(Opl.abs(Opl.intValue(myitem[3])), Opl.abs(Opl.intValue(myitem[4])));
-			M0cont = Opl.maxl(M0cont, curMcont);
-		}		
-		else {
-			data.p[j-data.exccont] = Opl.intValue(myitem[5]);
-			data.maxlab[j-data.exccont] = Opl.intValue(myitem[4]);
-			data.M[j-data.exccont] = 1 + Opl.intValue(myitem[5]);
- 		}			
+		data.p[j] = Opl.intValue(myitem[5]);
+		if (j <= data.dimcont)
+			data.M[j] = 1 + Opl.maxl(Opl.abs(Opl.intValue(myitem[3])), Opl.abs(Opl.intValue(myitem[4])))
+		else
+			data.maxlab[j] = Opl.intValue(myitem[4]);		
 	}
 	f.close();
-	
-	for (var j=1; j<=data.dimcont; j++)
-		data.M[j] = M0cont;
 	
 	data.coef = thisOplModel.mcoef;	
 	data.coef[1] = 1;
@@ -175,7 +146,7 @@ main {
 	
 	var nump = 0;		// total number of cuts
 	for (var j=1; j<=data.dim; j++)
-		nump += data.p[j];
+	nump += data.p[j];
 	
 	opl.addDataSource(data);
 	opl.generate();
@@ -205,13 +176,13 @@ main {
 			outerror.write(data.p[j], ",");		
 		outerror.write(error, ",", accuracy, ",", solvetime);
 		outerror.close();
-
-		// Scripting logs 1
+		
+		// Scripting logs
 		writeln("Bounds on # of cuts = ", nump, " with", data.p);
 		writeln("Error = ", error, " (out of ", data.N, " instances)");
 		writeln("Accuracy = ", accuracy);
 		writeln("Solving time = ", solvetime, " ms (milliseconds)");
-		writeln("Selected variables:");
+		writeln("------------------------------");
 		
 		// outinstance
 		outinstance.write("id,class,predict");
@@ -259,84 +230,6 @@ main {
 			outregion.write(opl.theta.solutionValue[b]);		
 		}
 		outregion.close();
-		
-		// outselvarint
-		outselvarint.write("j,jold,select,type")
-		for (var j=1; j<=data.dimcont; j++) {	// selected continuous features
-			outselvarint.write("\n", j, ",");
-			var seljold = -1;
-			for (var jold=1; jold<=data.dimcontold; jold++)
-				// Determine which old continuous feature is selected
-				if (opl.ccont.solutionValue[j][jold] == 1) {
-					seljold = jold;
-					break;	// terminate the loop
-				}
-			outselvarint.write(seljold, ",");
-			if (seljold > 0)	// New continuous feature is actually selected
-				outselvarint.write("1,");	// New continuousselected
-			else	// It turns out that the new continuous feature is not selected
-				outselvarint.write("0,");
-			outselvarint.write("cont");	
-		}
-		for (var j=data.dimcont+1; j<=data.dim; j++) {	// categorical feature
-			outselvarint.write("\n", j, ",", j+data.exccont, ",");
-			if (opl.f.solutionValue[j] == 1)	// selected categorical feature
-				outselvarint.write("1,");
-			else	// unselected categorical feature
-				outselvarint.write("0,");
-			outselvarint.write("cat");	
-		}
-		outselvarint.close();
-		
-		// outselvarstr
-		outselvarstr.write("jold,jnew,select,type,variable");
-		var varinfile = new IloOplInputFile(varfilename);		// variable info
-		var numselcont = 0;	// initialized number of actually selected continuous features
-		var numselcat = 0;	// initialized number of actually selected categorical features
-		for (var jold=1; jold<=data.dimcontold; jold++) {
-		 	outselvarstr.write("\n", jold, ",");
-		 	var jnew = -1;
-		 	for (var j=1; j<=data.dimcont; j++)
-		 		// Determine whether a current old continuous feature is selected
-		 		if (opl.ccont.solutionValue[j][jold] == 1) {	// selected
-		 			jnew = j;
-		 			break;	// terminate the loop
-		 		}
-		 	outselvarstr.write(jnew, ",");
-		 	var myitem = varinfile.readline().split(",");
-		 	if (jnew > 0) {	// selected continuous feature
-		 		outselvarstr.write("1,");
-		 		// Scripting logs 2 (continuous)
-		 		write("\t", myitem[1], " (Continuous)\n");
-		 		numselcont += 1;
-   			}		 		
-		 	else	// unselected continuous feature
-		 		outselvarstr.write("0,");
-		 	outselvarstr.write("cont,");
-		 	outselvarstr.write(myitem[1]);
-		}
-		for (var jold=data.dimcontold+1; jold<=data.dimold; jold++) {
-			var jnew = jold-data.exccont;
-			outselvarstr.write("\n", jold, ",", jnew, ",");
-			var myitem = varinfile.readline().split(",");
-			if (opl.f.solutionValue[jnew] == 1) {	// selected categorical feature
-				outselvarstr.write("1,");
-				// Scripting logs 2 (categorical)
-				write("\t", myitem[1], " (Categorical)\n");
-				numselcat += 1;
- 			}			
-			else	// unselected categorical feature
-				outselvarstr.write("0,");
-			outselvarstr.write("cat,");	
-		 	outselvarstr.write(myitem[1]);
-		}
-		varinfile.close();
-		outselvarstr.close();
-		
-		// Scripting logs 3
-		var numselall = numselcont + numselcat;
-		writeln("Number of selected variables = ", numselall, " (", numselcont, " continuous + ", numselcat, " categorical)");
-		writeln("------------------------------");
 	}
 	else
 		writeln("No solution");
