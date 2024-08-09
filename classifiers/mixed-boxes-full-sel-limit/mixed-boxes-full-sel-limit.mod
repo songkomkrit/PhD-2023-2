@@ -19,14 +19,14 @@
 /*********************************************
  * INPUTS
  *********************************************/ 
-int mdimold = 8;	// dimension			// 3 or 184 or 8
-int mdimcontold = 3; // continuous dimension	// 2 or 66 or 3
-//int mdimcat = 5; // categorical dimension	// 1 or 118 or 5
-int mN = 100;	// number of instances	// 8 or 157681 or 100
-int mn = 4;		// the value of n = (number of classes) - 1		// 1 or 4 or 4
+int mdimold = 3;	// dimension			// 3 or 184 or 8
+int mdimcontold = 2; // continuous dimension	// 2 or 66 or 3
+//int mdimcat = 2; // categorical dimension	// 1 or 118 or 5
+int mN = 8;	// number of instances	// 8 or 157681 or 100
+int mn = 1;		// the value of n = (number of classes) - 1		// 1 or 4 or 4
 
-int mselcont = 2;	// number of selected continuous dimensions
-int mselcat = 4;	// number of selected categorical dimensions
+int mselcont = 1;	// number of selected continuous dimensions
+int mselcat = 1;	// number of selected categorical dimensions
 
 int mexccont = mdimcontold - mselcont;	// number of excluded continuous dimensions
 int mdim = mdimold - mexccont;
@@ -77,8 +77,8 @@ tuple CatPairType {	// index for categorical group
 main {
 	var curtime5 = Opl.round((new Date()).getTime()/1000) % 100000; // in seconds
 	
-	var infilename = "input/seltrain20num8each20noh.csv";			// input filename
-	var varfilename = "input/selproc20num8co2ca2cutinfonoh.csv";			// variable filename (6 columns)
+	var infilename = "input/testin-2-2.csv";			// input filename
+	var varfilename = "input/testvar-2-2.csv";			// variable filename (6 columns)
 	var prefixout = "output/" + curtime5 + "-";		// prefix of all output files
 	prefixout += infilename.split("/")[1].split(".")[0] + "-";
 
