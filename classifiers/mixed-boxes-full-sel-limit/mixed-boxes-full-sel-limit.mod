@@ -19,9 +19,9 @@
 /*********************************************
  * INPUTS
  *********************************************/ 
-int mdimold = 3;	// dimension			// 3 or 184 or 8
+int mdimold = 4;	// dimension			// 4 or 184 or 8
 int mdimcontold = 2; // continuous dimension	// 2 or 66 or 3
-//int mdimcat = 2; // categorical dimension	// 1 or 118 or 5
+//int mdimcat = 2; // categorical dimension	// 2 or 118 or 5
 int mN = 8;	// number of instances	// 8 or 157681 or 100
 int mn = 1;		// the value of n = (number of classes) - 1		// 1 or 4 or 4
 
@@ -77,23 +77,23 @@ tuple CatPairType {	// index for categorical group
 main {
 	var curtime5 = Opl.round((new Date()).getTime()/1000) % 100000; // in seconds
 	
-	var infilename = "input/testin-2-2.csv";			// input filename
-	var varfilename = "input/testvar-2-2.csv";			// variable filename (6 columns)
+	var infilename = "input/testin.csv";			// input filename
+	var varfilename = "input/testvar.csv";			// variable filename (6 columns)
 	var prefixout = "output/" + curtime5 + "-";		// prefix of all output files
 	prefixout += infilename.split("/")[1].split(".")[0] + "-";
 
 	// Inputs
 	//var M0 = 500;			// big-M (float)
 	var m0 = 0.01;			// small-m (float)
-	var p0 = 2;				// max number of cuts along continuous axis (integer)
+	var pcont0 = 2;				// max number of cuts along continuous axis (integer)
 	
 	// Cplex limit parameters
 	var tlim = 60*5;		// cplex time limit (in seconds)
 	
 	//var postfixerror = "-M-" + M0 + "-m-" + m0 + ".csv";	// postfix of error file
 	var postfixerror = ".csv";
-	//var postfixout = "-p-" + p0 + "-M-" + M0 + "-m-" + m0 + ".csv";	// postfix of all other output files
-	var postfixout = ".csv"
+	//var postfixout = "-pcont-" + pcont0 + "-M-" + M0 + "-m-" + m0 + ".csv";	// postfix of all other output files
+	var postfixout = ".csv";
 	
 	// Outputs
 	var outerror = new IloOplOutputFile(prefixout + "export-error" + postfixerror, true); // append = true
@@ -145,7 +145,7 @@ main {
 
 	data.p = thisOplModel.mp;
 	for (var j=1; j<=data.dimcont; j++)
-		data.p[j] = p0;
+		data.p[j] = pcont0;
 	
 	data.M = thisOplModel.mM;
 	data.maxlab = thisOplModel.mmaxlab;
@@ -207,6 +207,7 @@ main {
 		outerror.close();
 
 		// Scripting logs 1
+		writeln("\n------------------------------");
 		writeln("Bounds on # of cuts = ", nump, " with", data.p);
 		writeln("Error = ", error, " (out of ", data.N, " instances)");
 		writeln("Accuracy = ", accuracy);
@@ -261,7 +262,7 @@ main {
 		outregion.close();
 		
 		// outselvarint
-		outselvarint.write("j,jold,select,type")
+		outselvarint.write("j,jold,mselect,type")	// mselect = model select (not actual)
 		for (var j=1; j<=data.dimcont; j++) {	// selected continuous features
 			outselvarint.write("\n", j, ",");
 			var seljold = -1;
@@ -272,61 +273,77 @@ main {
 					break;	// terminate the loop
 				}
 			outselvarint.write(seljold, ",");
-			if (seljold > 0)	// New continuous feature is actually selected
-				outselvarint.write("1,");	// New continuousselected
-			else	// It turns out that the new continuous feature is not selected
-				outselvarint.write("0,");
+			outselvarint.write("1,");	// Based on model, all new cont features are selected
 			outselvarint.write("cont");	
 		}
 		for (var j=data.dimcont+1; j<=data.dim; j++) {	// categorical feature
 			outselvarint.write("\n", j, ",", j+data.exccont, ",");
-			if (opl.f.solutionValue[j] == 1)	// selected categorical feature
+			if (opl.f.solutionValue[j] == 1)	// selected categorical feature (model)
 				outselvarint.write("1,");
-			else	// unselected categorical feature
+			else	// unselected categorical feature (model)
 				outselvarint.write("0,");
 			outselvarint.write("cat");	
 		}
 		outselvarint.close();
 		
 		// outselvarstr
-		outselvarstr.write("jold,jnew,select,type,variable");
+		outselvarstr.write("jold,jnew,aselect,type,variable"); // aselect = actual select
 		var varinfile = new IloOplInputFile(varfilename);		// variable info
 		var numselcont = 0;	// initialized number of actually selected continuous features
 		var numselcat = 0;	// initialized number of actually selected categorical features
-		for (var jold=1; jold<=data.dimcontold; jold++) {
+		for (var jold=1; jold<=data.dimcontold; jold++) {	// CONTINUOUS
 		 	outselvarstr.write("\n", jold, ",");
 		 	var jnew = -1;
+		 	var aselect = 0;	// initialized to be unselected (continuous)
 		 	for (var j=1; j<=data.dimcont; j++)
 		 		// Determine whether a current old continuous feature is selected
-		 		if (opl.ccont.solutionValue[j][jold] == 1) {	// selected
+		 		if (opl.ccont.solutionValue[j][jold] == 1) {	// selected (actual 1/2)
 		 			jnew = j;
 		 			break;	// terminate the loop
 		 		}
 		 	outselvarstr.write(jnew, ",");
 		 	var myitem = varinfile.readline().split(",");
-		 	if (jnew > 0) {	// selected continuous feature
-		 		outselvarstr.write("1,");
+		 	if (jnew > 0) {	// selected continuous feature (actual 1/2)
+		 		aselect = 1;	// seem to be selected (initialization for actual 2/2)
+		 		for (var q=0; q<=data.p[jnew]; q++) {
+		 			var bcleft = opl.bc.solutionValue[thisOplModel.mContPairs.find(jnew,q)];
+		 			var bcright = opl.bc.solutionValue[thisOplModel.mContPairs.find(jnew,q+1)];
+		 			if ((bcleft <= myitem[3]) && (bcright >= myitem[4])) {	// cover [min,max]
+		 				aselect = 0;	// unselected (actual 2/2)
+		 				break;
+		 			}
+		 		}
+  			}		 	
+		 	outselvarstr.write(aselect, ",");
+		 	if (aselect == 1) { // actually selected continuous feature
 		 		// Scripting logs 2 (continuous)
 		 		write("\t", myitem[1], " (Continuous)\n");
-		 		numselcont += 1;
-   			}		 		
-		 	else	// unselected continuous feature
-		 		outselvarstr.write("0,");
+		 		numselcont += 1;	 	  
+		 	}
 		 	outselvarstr.write("cont,");
-		 	outselvarstr.write(myitem[1]);
+		 	outselvarstr.write(myitem[1]);	// variable name
 		}
-		for (var jold=data.dimcontold+1; jold<=data.dimold; jold++) {
+		for (var jold=data.dimcontold+1; jold<=data.dimold; jold++) {	// CATEGORICAL
 			var jnew = jold-data.exccont;
 			outselvarstr.write("\n", jold, ",", jnew, ",");
+			var aselect = 0;	// initialized to be unselected (categorical)
 			var myitem = varinfile.readline().split(",");
-			if (opl.f.solutionValue[jnew] == 1) {	// selected categorical feature
-				outselvarstr.write("1,");
+			if (opl.f.solutionValue[jnew] == 1) {	// selected categorical feature (actual 1/2)
+ 				var vat0 = opl.v.solutionValue[thisOplModel.mCatPairs.find(jnew,0)];
+ 				for (var l=1; l<=data.maxlab[jnew]; l++) {
+ 					var vcur = opl.v.solutionValue[thisOplModel.mCatPairs.find(jnew,l)];
+ 					if (vcur != vat0) {	// distinct new groups are detected
+ 						aselect = 1;	// selected categorical feature (actual 2/2)
+ 						break;
+ 					}
+ 				}
+ 			}
+ 			outselvarstr.write(aselect, ",");
+ 			if (aselect == 1) {	// actually selected categorical feature
 				// Scripting logs 2 (categorical)
 				write("\t", myitem[1], " (Categorical)\n");
-				numselcat += 1;
- 			}			
-			else	// unselected categorical feature
-				outselvarstr.write("0,");
+				numselcat += 1;				
+ 			}
 			outselvarstr.write("cat,");	
 		 	outselvarstr.write(myitem[1]);
 		}

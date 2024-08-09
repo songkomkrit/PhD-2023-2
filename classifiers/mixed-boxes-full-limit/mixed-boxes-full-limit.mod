@@ -19,10 +19,10 @@
 /*********************************************
  * INPUTS
  *********************************************/ 
-int mdim = 8;	// dimension			// 3 or 184 or 8
-int mdimcont = 3; // continuous dimension	// 2 or 66 or 3
-//int mdimcat = 5; // categorical dimension	// 1 or 118 or 5
-int mN = 100;	// number of instances	// 8 or 157681 or 100
+int mdim = 4;	// dimension			// 4 or 184 or 8
+int mdimcont = 2; // continuous dimension	// 2 or 66 or 3
+//int mdimcat = 2; // categorical dimension	// 2 or 118 or 5
+int mN = 8;	// number of instances	// 8 or 157681 or 100
 int mn = 4;		// the value of n = (number of classes) - 1		// 1 or 4 or 4
 
 range mDS = 1..mdim;
@@ -178,6 +178,7 @@ main {
 		outerror.close();
 		
 		// Scripting logs
+		writeln("\n------------------------------");
 		writeln("Bounds on # of cuts = ", nump, " with", data.p);
 		writeln("Error = ", error, " (out of ", data.N, " instances)");
 		writeln("Accuracy = ", accuracy);

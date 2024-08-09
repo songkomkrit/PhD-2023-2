@@ -1,0 +1,5 @@
+jold,jnew,aselect,type,variable
+1,1,1,cont,INCOME
+2,-1,0,cont,SAVINGS
+3,2,1,cat,SEX
+4,3,0,cat,LOCATION
