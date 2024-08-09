@@ -20,6 +20,6 @@ PhD Dissertation Progress 2023/2
   * select/cuts/selproc20num8co2ca2cutinfonoh.csv
 * Execute OPL projects (classifiers)
   * ```cd classifiers```
-  * ```oplrun -p mixed-boxes-full-sel-limit```
+  * ```oplrun -p mixed-boxes-full-seltol-limit``` or ```oplrun -p mixed-boxes-full-selsep-limit```
     * In this project, 5-minute limit is set throught the command ```cplex.tilim = 60*5```
   * Results are exported in the output directory in CSV format
