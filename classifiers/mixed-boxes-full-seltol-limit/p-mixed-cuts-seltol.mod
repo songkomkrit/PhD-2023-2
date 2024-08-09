@@ -18,9 +18,9 @@ int n = ...;	// number of classes
 /*********************************************
  * FEATURE SELECTION (INPUTS)
  *********************************************/
-int selcont = ...;	// number of selected continuous dimensions
-int selcat = ...;	// number of selected categorical dimensions
-int exccont = ...;	// number of excluded continuous dimensions
+int seltol = ...;	// given number of total selected cont/cat dimensions (at most)
+int selcont = ...;	// UB on number of selected continuous dimensions
+int exccont = ...;	// computed LB on number of excluded continuous dimensions
 
 /*********************************************
  * INDEX RANGES 1
@@ -177,6 +177,6 @@ subject to {
 			v[<j,xcat[i][j]>] - M[j]*f[j] <= 0;
 	}
 
-	selcatnum:
-		sum(j in DSCAT) f[j] <= selcat;
+	seltolnum:
+		(sum(j in DSCONT, jold in DSCONTOLD) ccont[j][jold]) + (sum(j in DSCAT) f[j]) <= seltol;
 }

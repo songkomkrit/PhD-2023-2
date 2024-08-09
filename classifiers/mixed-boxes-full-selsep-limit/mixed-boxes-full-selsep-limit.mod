@@ -25,10 +25,10 @@ int mdimcontold = 2; // continuous dimension	// 2 or 66 or 3
 int mN = 8;	// number of instances	// 8 or 157681 or 100
 int mn = 1;		// the value of n = (number of classes) - 1		// 1 or 4 or 4
 
-int mselcont = 1;	// number of selected continuous dimensions
-int mselcat = 1;	// number of selected categorical dimensions
+int mselcont = 1;	// given number of selected continuous dimensions (at most)
+int mselcat = 1;	// given number of selected categorical dimensions (at most)
 
-int mexccont = mdimcontold - mselcont;	// number of excluded continuous dimensions
+int mexccont = mdimcontold - mselcont;	// computed number of excluded continuous dimensions
 int mdim = mdimold - mexccont;
 int mdimcont = mselcont;
 
@@ -85,15 +85,17 @@ main {
 	// Inputs
 	//var M0 = 500;			// big-M (float)
 	var m0 = 0.01;			// small-m (float)
-	var pcont0 = 2;				// max number of cuts along continuous axis (integer)
+	var pcont0 = 2;			// max number of cuts along continuous axis (integer)
 	
 	// Cplex limit parameters
-	var tlim = 60*5;		// cplex time limit (in seconds)
+	var tlimin = 5;			// cplex time limit (in minutes)
+	var tlim = 60*tlimin;		// cplex time limit (in seconds)
 	
-	//var postfixerror = "-M-" + M0 + "-m-" + m0 + ".csv";	// postfix of error file
-	var postfixerror = ".csv";
-	//var postfixout = "-pcont-" + pcont0 + "-M-" + M0 + "-m-" + m0 + ".csv";	// postfix of all other output files
-	var postfixout = ".csv";
+	// Postfixes
+	var cpostfixname = "mselsep-" + thisOplModel.mselcont + "-" + thisOplModel.mselcat + "-";
+	cpostfixname += "t-" + tlimin + ".csv";	// common postfix name
+	var postfixerror = "-" + cpostfixname;	// postfix of error file
+	var postfixout = "-pcont-" + pcont0 + "-" + cpostfixname;	// postfix of all other output files
 	
 	// Outputs
 	var outerror = new IloOplOutputFile(prefixout + "export-error" + postfixerror, true); // append = true
@@ -107,7 +109,7 @@ main {
 	var outselvarstr = new IloOplOutputFile(prefixout + "export-select-var-str" + postfixout); // selected variables (string)
 	
 	// OPL
-	var source = new IloOplModelSource("p-mixed-cuts-sel.mod");
+	var source = new IloOplModelSource("p-mixed-cuts-selsep.mod");
 	var cplex = new IloCplex();
 	var def = new IloOplModelDefinition(source);
 	var opl = new IloOplModel(def,cplex);

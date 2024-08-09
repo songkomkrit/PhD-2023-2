@@ -7,33 +7,43 @@
 /*********************************************
  * DATA INFORMATION (INPUTS)
  *********************************************/
-int dim = ...;	// dimension
-int dimcont = ...;	// continuous dimension
+int dimold = ...;	// old dimension
+int dimcontold = ...;	// old continuous dimension
+int dim = ...;	// new dimension
+int dimcont = ...;	// new continuous dimension
 //int dimcat = ...;	// categorical dimension
 int N = ...;	// number of instances
 int n = ...;	// number of classes
 
 /*********************************************
+ * FEATURE SELECTION (INPUTS)
+ *********************************************/
+int selcont = ...;	// given number of selected continuous dimensions (at most)
+int selcat = ...;	// given number of selected categorical dimensions (at most)
+int exccont = ...;	// computed number of excluded continuous dimensions
+
+/*********************************************
  * INDEX RANGES 1
  *********************************************/
 range DS = 1..dim;		// for dimensions
-range DSCONT = 1..dimcont;	// for continuous dimensions
-range DSCAT = dimcont+1..dim;	// for categorical dimensions
+range DSCONTOLD = 1..dimcontold;	// for old continuous dimensions
+range DSCONT = 1..dimcont;	// for new continuous dimensions
+range DSCAT = dimcont+1..dim;	// for shifted categorical dimensions
 range IS = 1..N;		// for instances
 
 /*********************************************
  * INITIAL PARAMETERS (INPUTS)
  *********************************************/
-float M[DSCONT] = ...;			// big-M for continuous dimensions
-float m[DSCONT] = ...;		// small-m for continuous dimensions
+float M[DS] = ...;		// big-M for all new/shifted dimensions (continuous and categorical)
+float m[DSCONT] = ...;	// small-m for new continuous dimensions
 
 /*********************************************
  * DATA EXTRACTION (INPUTS)
  *********************************************/
-float xcont[IS][DSCONT] = ...;	// instances along continuous dimensions
-int xcat[IS][DSCAT] = ...;	// instances along categorical dimensions
+float xcontold[IS][DSCONTOLD] = ...;	// instances along old continuous dimensions
+int xcat[IS][DSCAT] = ...;	// instances along shifted categorical dimensions
 int y[IS] = ...;		// targets
-int maxlab[DSCAT] = ...;		// maximum labels for categorical dimensions
+int maxlab[DSCAT] = ...;		// maximum labels for new categorical dimensions
 int p[DS] = ...;		// number of cuts along axes
 int coef[DS] = ...;		// product coefficients
 
@@ -89,6 +99,9 @@ dvar boolean a[ContTriples];	// alpha
 dvar int+ v[CatPairs];	// v (categorical features)
 dvar boolean g[IS][BS];		// gamma
 dvar boolean e[IS];
+// Feature selection
+dvar boolean ccont[DSCONT][DSCONTOLD];	// select continuous dimensions
+dvar boolean f[DSCAT];				// select categorical dimensions
 
 /*********************************************
  * OBJECTIVE FUNCTION
@@ -100,14 +113,22 @@ minimize sum(i in IS) e[i];		// min total number of misclassifed instances
  *********************************************/
 subject to {
 
+	forall(j in DSCONT)
+		getnewcont:
+			sum(jold in DSCONTOLD) ccont[j][jold] <= 1;
+
+	forall(jold in DSCONTOLD)
+		seloldcont:
+			sum(j in DSCONT) ccont[j][jold] <= 1;
+
 	forall(j in DSCONT, q in 0..p[j])
 		bc[<j,q+1>] - bc[<j,q>] >= 0;
 
 	forall(i in IS, j in DSCONT) {
 		lbound:
-	  		(sum(q in 0..p[j]) l[<i,j,q>]) <= xcont[i][j];	
+	  		(sum(jold in DSCONTOLD) xcontold[i][jold]*ccont[j][jold]) - (sum(q in 0..p[j]) l[<i,j,q>]) >= 0;	
 	  	rbound:
-	  		(sum(q in 0..p[j]) r[<i,j,q>]) >= xcont[i][j];	
+	  		(sum(jold in DSCONTOLD) xcontold[i][jold]*ccont[j][jold]) - (sum(q in 0..p[j]) r[<i,j,q>]) <= 0;
 	}
 	
 	forall(i in IS, j in DSCONT, q in 0..p[j]) {
@@ -148,4 +169,14 @@ subject to {
 	
 	forall(j in DSCAT, l in 0..maxlab[j])
 		v[<j,l>] <= p[j];
+	
+	forall(i in IS, j in DSCAT) {
+		selcat1:
+			v[<j,xcat[i][j]>] + M[j]*f[j] >= 0;
+		selcat2:
+			v[<j,xcat[i][j]>] - M[j]*f[j] <= 0;
+	}
+
+	selcatnum:
+		sum(j in DSCAT) f[j] <= selcat;
 }

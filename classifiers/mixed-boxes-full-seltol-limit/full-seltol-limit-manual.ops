@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings version="2">
+  <category name="cplex">
+    <setting name="aggind" value="0"/>
+    <setting name="bndstrenind" value="0"/>
+    <setting name="coeredind" value="0"/>
+    <setting name="depind" value="0"/>
+    <setting name="predual" value="-1"/>
+    <setting name="aggfill" value="0"/>
+    <setting name="folding" value="0"/>
+    <setting name="prelinear" value="0"/>
+    <setting name="prereform" value="0"/>
+    <setting name="sos2reform" value="-1"/>
+    <setting name="sos1reform" value="-1"/>
+    <setting name="prepass" value="0"/>
+    <setting name="reduce" value="0"/>
+    <setting name="calcqcpduals" value="0"/>
+    <setting name="relaxpreind" value="0"/>
+    <setting name="repeatpresolve" value="0"/>
+    <setting name="symmetry" value="0"/>
+    <setting name="preslvnd" value="-1"/>
+    <setting name="probe" value="-1"/>
+    <setting name="cardls" value="2"/>
+    <setting name="nodesel" value="2"/>
+    <setting name="mipkappastats" value="-1"/>
+    <setting name="fpheur" value="2"/>
+    <setting name="heureffort" value="100.0"/>
+    <setting name="rinsheur" value="100"/>
+    <setting name="heurfreq" value="100"/>
+    <setting name="rltcuts" value="-1"/>
+    <setting name="zerohalfcuts" value="-1"/>
+    <setting name="flowpaths" value="-1"/>
+    <setting name="nodecuts" value="-1"/>
+    <setting name="mircuts" value="-1"/>
+    <setting name="mcfcuts" value="-1"/>
+    <setting name="localimplbd" value="-1"/>
+    <setting name="landpcuts" value="-1"/>
+    <setting name="implbd" value="-1"/>
+    <setting name="gubcovers" value="-1"/>
+    <setting name="fraccuts" value="-1"/>
+    <setting name="bqpcuts" value="-1"/>
+    <setting name="cliques" value="-1"/>
+    <setting name="covers" value="-1"/>
+    <setting name="disjcuts" value="-1"/>
+    <setting name="flowcovers" value="-1"/>
+  </category>
+</settings>
