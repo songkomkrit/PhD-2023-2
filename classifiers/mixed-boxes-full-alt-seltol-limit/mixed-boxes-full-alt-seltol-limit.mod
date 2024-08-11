@@ -77,6 +77,13 @@ tuple CatPairType {	// index for categorical group
 
 {CatPairType} mCatPairs = {<j, l> | j in mDSCAT, l in 0..mmaxlab[j]};
 
+tuple tuplePred {
+	key int b;
+	sorted {int} label;
+}
+sorted {tuplePred} mpred;
+{int} memptyset = {};
+
 /*********************************************
  * MAIN EXECUTION
  *********************************************/ 
@@ -98,10 +105,10 @@ main {
 	var tlim = 60*tlimin;		// cplex time limit (in seconds)
 	
 	// Postfixes
-	var cpostfixname = "mseltol-" + thisOplModel.mseltol + "-";
+	var cpostfixname = "mfullaltseltol-" + thisOplModel.mseltol + "-";
 	cpostfixname += "t-" + tlimin + ".csv";	// common postfix name
 	var postfixerror = "-" + cpostfixname;	// postfix of error file
-	var postfixout = "-pcont-" + pcont0 + "-" + cpostfixname;	// postfix of all other output filess
+	var postfixout = "-pcont-" + pcont0 + "-" + cpostfixname;	// postfix of all other output files
 	
 	// Outputs
 	var outerror = new IloOplOutputFile(prefixout + "export-error" + postfixerror, true); // append = true
@@ -115,7 +122,7 @@ main {
 	var outselvarstr = new IloOplOutputFile(prefixout + "export-select-var-str" + postfixout); // selected variables (string)
 	
 	// OPL
-	var source = new IloOplModelSource("p-mixed-cuts-seltol.mod");
+	var source = new IloOplModelSource("p-mixed-cuts-alt-seltol.mod");
 	var cplex = new IloCplex();
 	var def = new IloOplModelDefinition(source);
 	var opl = new IloOplModel(def,cplex);
@@ -131,6 +138,9 @@ main {
 	data.xcontold = thisOplModel.mxcontold;
 	data.xcat = thisOplModel.mxcat;
 	data.y = thisOplModel.my;
+
+	var pred = thisOplModel.mpred;			// set of predicted labels
+	pred.clear();
 	
 	data.seltol = thisOplModel.mseltol;
 	data.selcont = thisOplModel.mselcont;
@@ -199,7 +209,7 @@ main {
 		var end = new Date();	// end a timer
 		var solvetime = end.getTime() - start.getTime();	// compute solving time
 		
-		var error = cplex.getObjValue();		// the number of misclassified instances
+		var error = data.N + cplex.getObjValue();	// the number of misclassified instances
 		var accuracy = (1-error/data.N)*100;	// training accuracy
 		
 		// outerror
@@ -221,14 +231,34 @@ main {
 		writeln("Accuracy = ", accuracy);
 		writeln("Solving time = ", solvetime, " ms (milliseconds)");
 		writeln("Selected variables:");
+
+		// Create a set of predicted labels (majority voting)
+		for (var b=0; b<opl.B; b++) {
+			var lset = Opl.operatorUNION(thisOplModel.memptyset,thisOplModel.memptyset);				
+			var maxnum = 0;
+			for (var k=0; k<=data.n; k++) {
+				var num = 0;
+				for (var i=1; i<=data.N; i++)
+					num += (data.y[i] == k)*opl.g.solutionValue[i][b];						
+				if (num == maxnum)
+					lset.add(k);						
+				else if (num > maxnum) {
+					maxnum = num;						
+					lset.clear();
+					lset.add(k);						
+				}				
+			}
+			pred.add(b, lset);				
+		}
 		
 		// outinstance
-		outinstance.write("id,class,predict");
+		outinstance.write("id,class,region,predict");
 		for (var i=1; i<=data.N; i++) {
 			outinstance.write("\n", i, ",", data.y[i], ",");
 			for (var b=0; b<opl.B; b++) 
 				if (opl.g.solutionValue[i][b] == 1) {	// occur only once
-					outinstance.write(opl.theta.solutionValue[b]);	
+					outinstance.write(b, ",");
+					outinstance.write(pred.get(b).label);	
 					break;	// terminate the loop
 				}		
 		}
@@ -262,10 +292,10 @@ main {
 			for (var i=1; i<=data.N; i++)
 				if (opl.g.solutionValue[i][b] == 1) {	// occupied
 					s = 1;
-					break;	// terminate the loop					
+					break;	// iterminate the loop					
 				}
 			outregion.write(s, ",");
-			outregion.write(opl.theta.solutionValue[b]);		
+			outregion.write(pred.get(b).label);		
 		}
 		outregion.close();
 		

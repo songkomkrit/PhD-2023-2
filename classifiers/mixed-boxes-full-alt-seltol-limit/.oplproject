@@ -4,12 +4,12 @@
     	
     <configs>
         		
-        <config default="true" name="run-full-selsep-limit" category="opl">
+        <config default="true" name="run-full-alt-seltol-limit" category="opl">
             			
-            <ref name="mixed-boxes-full-selsep-limit.mod" type="model">
+            <ref name="mixed-boxes-full-alt-seltol-limit.mod" type="model">
 			</ref>
             			
-            <ref name="full-selsep-limit-orig.ops" type="setting">
+            <ref name="full-alt-seltol-limit-orig.ops" type="setting">
 			</ref>
             		
         </config>

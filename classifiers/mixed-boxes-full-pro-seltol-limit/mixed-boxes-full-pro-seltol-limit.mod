@@ -25,10 +25,16 @@ int mdimcontold = 2; // continuous dimension	// 2 or 66 or 3
 int mN = 8;	// number of instances	// 8 or 157681 or 100
 int mn = 1;		// the value of n = (number of classes) - 1		// 1 or 4 or 4
 
-int mselcont = 1;	// given number of selected continuous dimensions (at most)
-int mselcat = 1;	// given number of selected categorical dimensions (at most)
+int mseltol = 2;	// given number of total selected cont/cat dimensions (at most)
 
-int mexccont = mdimcontold - mselcont;	// computed number of excluded continuous dimensions
+// Initialized UB on number of selected continuous dimensions
+int mselcont = mdimcontold;
+execute {
+	if (mselcont > mseltol)
+		mselcont = mseltol;
+}
+
+int mexccont = mdimcontold - mselcont;	// computed LB on number of excluded continuous dimensions
 int mdim = mdimold - mexccont;
 int mdimcont = mselcont;
 
@@ -92,7 +98,7 @@ main {
 	var tlim = 60*tlimin;		// cplex time limit (in seconds)
 	
 	// Postfixes
-	var cpostfixname = "mselsep-" + thisOplModel.mselcont + "-" + thisOplModel.mselcat + "-";
+	var cpostfixname = "mfullproseltol-" + thisOplModel.mseltol + "-";
 	cpostfixname += "t-" + tlimin + ".csv";	// common postfix name
 	var postfixerror = "-" + cpostfixname;	// postfix of error file
 	var postfixout = "-pcont-" + pcont0 + "-" + cpostfixname;	// postfix of all other output files
@@ -109,7 +115,7 @@ main {
 	var outselvarstr = new IloOplOutputFile(prefixout + "export-select-var-str" + postfixout); // selected variables (string)
 	
 	// OPL
-	var source = new IloOplModelSource("p-mixed-cuts-selsep.mod");
+	var source = new IloOplModelSource("p-mixed-cuts-pro-seltol.mod");
 	var cplex = new IloCplex();
 	var def = new IloOplModelDefinition(source);
 	var opl = new IloOplModel(def,cplex);
@@ -126,8 +132,8 @@ main {
 	data.xcat = thisOplModel.mxcat;
 	data.y = thisOplModel.my;
 	
+	data.seltol = thisOplModel.mseltol;
 	data.selcont = thisOplModel.mselcont;
-	data.selcat = thisOplModel.mselcat;
 	data.exccont = thisOplModel.mexccont;
 	
 	data.m = thisOplModel.mm;

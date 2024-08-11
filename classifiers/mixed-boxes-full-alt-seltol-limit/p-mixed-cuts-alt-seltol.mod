@@ -18,9 +18,9 @@ int n = ...;	// number of classes
 /*********************************************
  * FEATURE SELECTION (INPUTS)
  *********************************************/
-int selcont = ...;	// given number of selected continuous dimensions (at most)
-int selcat = ...;	// given number of selected categorical dimensions (at most)
-int exccont = ...;	// computed number of excluded continuous dimensions
+int seltol = ...;	// given number of total selected cont/cat dimensions (at most)
+int selcont = ...;	// UB on number of selected continuous dimensions
+int exccont = ...;	// computed LB on number of excluded continuous dimensions
 
 /*********************************************
  * INDEX RANGES 1
@@ -30,6 +30,7 @@ range DSCONTOLD = 1..dimcontold;	// for old continuous dimensions
 range DSCONT = 1..dimcont;	// for new continuous dimensions
 range DSCAT = dimcont+1..dim;	// for shifted categorical dimensions
 range IS = 1..N;		// for instances
+range KS = 0..n;		// for classes
 
 /*********************************************
  * INITIAL PARAMETERS (INPUTS)
@@ -93,12 +94,11 @@ dvar float l[ContTriples];
 dvar float r[ContTriples];
 dvar float bc[ContPairs];		// bc is in R (c = cut)
 // Note that b is used for beta indexing
-dvar int+ thetat[IS][BS];	// theta tilde
-dvar int+ theta[BS];
+dvar float h[BS];			// h
 dvar boolean a[ContTriples];	// alpha
 dvar int+ v[CatPairs];	// v (categorical features)
 dvar boolean g[IS][BS];		// gamma
-dvar boolean e[IS];
+dvar boolean z[BS][KS];		// 
 // Feature selection
 dvar boolean ccont[DSCONT][DSCONTOLD];	// select continuous dimensions
 dvar boolean f[DSCAT];				// select categorical dimensions
@@ -106,7 +106,7 @@ dvar boolean f[DSCAT];				// select categorical dimensions
 /*********************************************
  * OBJECTIVE FUNCTION
  *********************************************/
-minimize sum(i in IS) e[i];		// min total number of misclassifed instances
+minimize sum(b in BS) h[b];			// min total number of misclassifed instances
 
 /*********************************************
  * CONSTRAINTS
@@ -151,21 +151,16 @@ subject to {
 	
 	forall(i in IS) {
 		bregion:
-			sum(b in BS) g[i][b] == 1;	
-		error1:
-			(sum(b in BS) thetat[i][b]) + n*e[i] >= y[i];
-		error2:
-			(sum(b in BS) thetat[i][b]) - n*e[i] <= y[i];
+			sum(b in BS) g[i][b] == 1;
 	}
 	
-	forall(i in IS, b in BS) {
-		error3:
-			thetat[i][b] - theta[b] <= 0;
-		error4:
-			thetat[i][b] - theta[b] - n*g[i][b] >= -n;
-		error5:
-			thetat[i][b] - n*g[i][b] <= 0;
-	}
+	forall(b in BS, k in KS)
+		error1:
+			h[b] + (sum(i in IS) (y[i] == k)*g[i][b]) + N*z[b][k] >= 0;
+	
+	forall(b in BS)
+		error2:
+			sum(k in KS) z[b][k] == n;
 	
 	forall(j in DSCAT, l in 0..maxlab[j])
 		v[<j,l>] <= p[j];
@@ -177,6 +172,6 @@ subject to {
 			v[<j,xcat[i][j]>] - M[j]*f[j] <= 0;
 	}
 
-	selcatnum:
-		sum(j in DSCAT) f[j] <= selcat;
+	seltolnum:
+		(sum(j in DSCONT, jold in DSCONTOLD) ccont[j][jold]) + (sum(j in DSCAT) f[j]) <= seltol;
 }
