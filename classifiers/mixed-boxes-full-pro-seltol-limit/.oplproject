@@ -9,7 +9,7 @@
             <ref name="mixed-boxes-full-pro-seltol-limit.mod" type="model">
 			</ref>
             			
-            <ref name="full-pro-seltol-limit-orig.ops" type="setting">
+            <ref name="full-pro-seltol-limit-manual.ops" type="setting">
 			</ref>
             		
         </config>

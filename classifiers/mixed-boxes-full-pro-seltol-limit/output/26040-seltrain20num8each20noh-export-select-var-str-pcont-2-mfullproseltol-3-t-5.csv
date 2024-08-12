@@ -1,0 +1,9 @@
+jold,jnew,aselect,type,variable
+1,-1,0,cont,A_AGE
+2,-1,0,cont,PTOTVAL
+3,-1,0,cont,SS_VAL
+4,4,0,cat,PEMLR
+5,5,0,cat,RESNSS1
+6,6,0,cat,RSNNOTW
+7,7,0,cat,SS_YN
+8,8,0,cat,FILESTAT

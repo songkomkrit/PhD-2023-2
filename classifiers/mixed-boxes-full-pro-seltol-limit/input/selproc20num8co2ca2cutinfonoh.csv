@@ -1,8 +1,8 @@
 1,A_AGE,Continuous,0,85,2
 2,PTOTVAL,Continuous,-9999,2085704,2
 3,SS_VAL,Continuous,0,80000,2
-4,PEMLR,Categorical,0,7,3
-5,RESNSS1,Categorical,0,8,3
-6,RSNNOTW,Categorical,0,6,3
-7,SS_YN,Categorical,0,2,3
-8,FILESTAT,Categorical,0,5,3
+4,PEMLR,Categorical,0,7,2
+5,RESNSS1,Categorical,0,8,2
+6,RSNNOTW,Categorical,0,6,2
+7,SS_YN,Categorical,0,2,2
+8,FILESTAT,Categorical,0,5,2
