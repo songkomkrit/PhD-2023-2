@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+    	
+    <version>1.0</version>
+    	
+    <configs>
+        		
+        <config default="true" name="run-exp-full-pro-seltol-limit" category="opl">
+            			
+            <ref name="exp-mixed-boxes-full-pro-seltol-limit.mod" type="model">
+			</ref>
+            			
+            <ref name="exp-full-pro-seltol-limit-orig.ops" type="setting">
+			</ref>
+            		
+        </config>
+        	
+    </configs>
+    	
+
+</project>

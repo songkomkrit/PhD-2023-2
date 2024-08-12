@@ -1,0 +1,4 @@
+1,A_AGE,Continuous,0,85,3
+2,PTOTVAL,Continuous,-9999,2085704,3
+3,PEMLR,Categorical,0,7,3
+4,SS_YN,Categorical,0,2,2
