@@ -4,12 +4,12 @@
     	
     <configs>
         		
-        <config default="true" name="run-exp-full-pro-seltol-limit" category="opl">
+        <config default="true" name="run-full-pro-seltol-ws-limit" category="opl">
             			
-            <ref name="exp-mixed-boxes-full-pro-seltol-limit.mod" type="model">
+            <ref name="mixed-boxes-full-pro-seltol-ws-limit.mod" type="model">
 			</ref>
             			
-            <ref name="exp-full-pro-seltol-limit-orig.ops" type="setting">
+            <ref name="full-pro-seltol-ws-limit-orig.ops" type="setting">
 			</ref>
             		
         </config>

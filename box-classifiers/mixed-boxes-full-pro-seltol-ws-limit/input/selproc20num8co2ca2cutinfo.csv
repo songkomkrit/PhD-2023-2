@@ -1,4 +1,5 @@
-1,A_AGE,Continuous,0,85,2
+id,variable,type,min,max,cut
+1,A_AGE,Continuous,1,85,2
 2,PTOTVAL,Continuous,0,367075,2
 3,SS_VAL,Continuous,0,45000,2
 4,PEMLR,Categorical,0,7,2

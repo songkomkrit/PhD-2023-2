@@ -89,13 +89,20 @@ tuple CatPairType {	// index for categorical group
 {CatPairType} mCatPairs = {<j, l> | j in mDSCAT, l in 0..mmaxlab[j]};
 
 /*********************************************
+ * OUTSIDE EXECUTION
+ *********************************************/
+execute {
+	thisOplModel.settings.run_engineLog = "tmp/current-engine.log";	// temporary engine log
+}
+
+/*********************************************
  * MAIN EXECUTION
  *********************************************/ 
 main {
 	var curtime5 = Opl.round((new Date()).getTime()/1000) % 100000; // in seconds
 	
-	var infilename = "input/seltrain20num4each20noh.csv";			// input filename
-	var varfilename = "input/selproc20num4co3ca3cutinfonoh.csv";			// variable filename (6 columns)
+	var infilename = "input/seltrain20num4each20.csv";			// input filename
+	var varfilename = "input/selproc20num4co3ca3cutinfo.csv";			// variable filename (6 columns)
 	var prefixout = "output/" + curtime5 + "-";		// prefix of all output files
 	prefixout += infilename.split("/")[1].split(".")[0] + "-";
 
@@ -113,7 +120,7 @@ main {
 	else
 		var tlimin = 'na';
 	
-	// Warm start
+	// Warm start (Consider the case when no categorical feature is selected)
 	var warmstart = 1;		// whether use a warm start (1 = use / 0 = not use)
 	if (warmstart == 1) {
 		var startdir = "start/num4";
@@ -125,7 +132,7 @@ main {
 	}
 	
 	// Postfixes
-	var cpostfixname = "mfullproseltol-" + thisOplModel.mseltol + "-";
+	var cpostfixname = "mfullproseltol-" + thisOplModel.mseltol + "-ws-";
 	cpostfixname += "t-" + tlimin + ".csv";	// common postfix name
 	var postfixerror = "-" + cpostfixname;	// postfix of error file
 	var postfixout = "-pcont-" + pcont0 + "-" + cpostfixname;	// postfix of all other output files
@@ -140,13 +147,17 @@ main {
 	var outregion = new IloOplOutputFile(prefixout + "export-predict-region" + postfixout);
 	var outselvarint = new IloOplOutputFile(prefixout + "export-select-var-int" + postfixout); // selected variables (integer)
 	var outselvarstr = new IloOplOutputFile(prefixout + "export-select-var-str" + postfixout); // selected variables (string)
+
+	// Engine log (initialized)
+	var logfilename = "log/" + curtime5 + "-engine-" + cpostfixname.split(".")[0] + ".log";
+	var outlog = new IloOplOutputFile(logfilename);
 	
 	// OPL (Warm start)
 	if (warmstart == 1)
 		var vectors= new IloOplCplexVectors();
 	
 	// OPL (Required)
-	var source = new IloOplModelSource("exp-p-mixed-cuts-pro-seltol.mod");
+	var source = new IloOplModelSource("p-mixed-cuts-pro-seltol.mod");
 	var cplex = new IloCplex();
 	var def = new IloOplModelDefinition(source);
 	var opl = new IloOplModel(def,cplex);
@@ -171,7 +182,8 @@ main {
 	for (var j=1; j<=data.dimcont; j++)
 		data.m[j] = m0;
 	
-	var f = new IloOplInputFile(infilename);		// training dataset
+	var f = new IloOplInputFile(infilename);	// training dataset
+	f.readline();								// skip a header
 	for (var i=1; i<=data.N; i++) {
 		var myitem = f.readline().split(",");
 		data.y[i] = Opl.intValue(myitem[data.dimold]);
@@ -189,7 +201,8 @@ main {
 	data.M = thisOplModel.mM;
 	data.maxlab = thisOplModel.mmaxlab;
 	var M0cont = 1;
-	var f = new IloOplInputFile(varfilename);		// variable info
+	var f = new IloOplInputFile(varfilename);	// variable info
+	f.readline();								// skip a header
 	for (var j=1; j<=data.dimold; j++) {
 		var myitem = f.readline().split(",");
 		if (j <= data.dimcontold) {
@@ -229,7 +242,7 @@ main {
 	if (warmstart == 1) {
 	  	// ccont (given)
 		var insccont= new IloOplInputFile(insccontname);
-		var myitem = insccont.readline().split(",");	// to skip a header
+		insccont.readline();	// skip a header
 		for (var j=1; j<=data.dimcont; j++) {
 			for (var jold=1; jold<=data.dimcontold; jold++) {
 				var myitem = insccont.readline().split(",");
@@ -241,7 +254,7 @@ main {
 		
 		// e (given)
 		var inse = new IloOplInputFile(insename);
-		var myitem = inse.readline().split(",");	// to skip a header
+		inse.readline();	// skip a header
 		for (var i=1; i<=data.N; i++) {
 			var myitem = inse.readline().split(",");
 			thisOplModel.mse[i] = Opl.intValue(myitem[1]);
@@ -251,7 +264,7 @@ main {
 		
 		// f (given)
 		var insf = new IloOplInputFile(insfname);
-		var myitem = insf.readline().split(",");	// to skip a header
+		insf.readline();	// skip a header
 		for (var j=data.dimcont+1; j<=data.dim; j++) {
 			var myitem = insf.readline().split(",");
 			thisOplModel.msf[j] = Opl.intValue(myitem[1]);
@@ -261,7 +274,7 @@ main {
 		
 		// theta (given)
 		var instheta = new IloOplInputFile(insthetaname);
-		var myitem = instheta.readline().split(",");	// to skip a header
+		instheta.readline();	// skip a header
 		for (var b=0; b<=thisOplModel.mB-1; b++) {
 			var myitem = instheta.readline().split(",");
 			thisOplModel.mstheta[b] = Opl.intValue(myitem[1]);		
@@ -269,12 +282,13 @@ main {
 		instheta.close();
 		vectors.attach(opl.theta, thisOplModel.mstheta);
 		
-		// g and thetat (derived)
+		// g and thetat (derived) (It turns out to provide a slow search)
+		/*
 		for (var i=1; i<=data.N; i++) {
 			// Only consider new continuous dimensions (by our initialization)
 			var bcur = 0;	// initialize bcur first
 			var insbc = new IloOplInputFile(insbcname);
-			var myitem = insbc.readline().split(",");	// to skip a header
+			insbc.readline();	// skip a header
 			for (var j=1; j<=data.dimcont; j++) {	// initialize only at cont
 				for (var jold=1; jold<=data.dimcontold; jold++) {
 					if (thisOplModel.msccont[j][jold] == 1) {
@@ -300,7 +314,10 @@ main {
 			thisOplModel.msg[i][bcur] = 1;
 			thisOplModel.msthetat[i][bcur] = thisOplModel.mstheta[bcur];
 			insbc.close();
-		}		
+		}
+		vectors.attach(opl.g, thisOplModel.msg);
+		vectors.attach(opl.thetat, thisOplModel.msthetat);
+		*/
 		
 		// Finalize
 		vectors.setStart(cplex);
@@ -316,17 +333,22 @@ main {
 		
 		var error = cplex.getObjValue();		// the number of misclassified instances
 		var accuracy = (1-error/data.N)*100;	// training accuracy
+
+		var status = cplex.status;	// solution status code (1 = opt / 11 = time limit / ...)
+		var lberr = cplex.getBestObjValue();	// LB on minimum (optimal) error
+		var relgap = cplex.getMIPRelativeGap();	// relative objective gap for MIP
 		
 		// outerror
 		if (!outerror.exists) {
-			for (var j=1; j<=data.dim; j++)	
+			for (var j=1; j<=data.dim; j++)
 				outerror.write("p", j, ",");
-			outerror.write("error,accuracy,ms");
-		}		
+			outerror.write("error,accuracy,ms,status,lberr,relgap");
+		}
 		outerror.write("\n");
 		for (var j=1; j<=data.dim; j++)
-			outerror.write(data.p[j], ",");		
-		outerror.write(error, ",", accuracy, ",", solvetime);
+			outerror.write(data.p[j], ",");
+		outerror.write(error, ",", accuracy, ",", solvetime, ",");
+		outerror.write(status, ",", lberr, ",", relgap);
 		outerror.close();
 
 		// Scripting logs 1
@@ -335,7 +357,10 @@ main {
 		writeln("Error = ", error, " (out of ", data.N, " instances)");
 		writeln("Accuracy = ", accuracy);
 		writeln("Solving time = ", solvetime, " ms (milliseconds)");
-		writeln("Selected variables:");
+		writeln("\nSolution status code = ", status);
+		writeln("LB on error =  ", lberr);
+		writeln("Relative objective gap = ", relgap);
+		writeln("\nSelected variables:");
 		
 		// outinstance
 		outinstance.write("id,class,predict");
@@ -412,6 +437,7 @@ main {
 		// outselvarstr
 		outselvarstr.write("jold,jnew,aselect,type,variable"); // aselect = actual select
 		var varinfile = new IloOplInputFile(varfilename);		// variable info
+		varinfile.readline();	// skip a header
 		var numselcont = 0;	// initialized number of actually selected continuous features
 		var numselcat = 0;	// initialized number of actually selected categorical features
 		for (var jold=1; jold<=data.dimcontold; jold++) {	// CONTINUOUS
@@ -477,7 +503,7 @@ main {
 		
 		// Scripting logs 3
 		var numselall = numselcont + numselcat;
-		writeln("Number of selected variables = ", numselall, " (", numselcont, " continuous + ", numselcat, " categorical)");
+		writeln("\nNumber of selected variables = ", numselall, " (", numselcont, " continuous + ", numselcat, " categorical)");
 		writeln("------------------------------");
 	}
 	else
@@ -487,5 +513,13 @@ main {
 	data.end(); 
 	def.end(); 
 	cplex.end(); 
-	source.end();	
+	source.end();
+
+	// Engine log (exported)
+	var inlog = new IloOplInputFile("tmp/current-engine.log");
+	while (!inlog.eof) {
+		outlog.writeln(inlog.readline());
+	}
+	inlog.close();
+	outlog.close();
 }
