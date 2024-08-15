@@ -18,8 +18,9 @@ PhD Dissertation Progress 2023/2
 * Copy the following files to an input directory of a CPLEX project
   * select/traineach20/seltrain20num8each20noh.csv
   * select/cuts/selproc20num8co2ca2cutinfonoh.csv
-* Execute OPL projects (classifiers)
-  * ```cd classifiers```
-  * ```oplrun -p mixed-boxes-full-seltol-limit``` or ```oplrun -p mixed-boxes-full-seltol-ws-limit```
-    * In this project, 5-minute limit is set throught the command ```cplex.tilim = 60*5```
+* Execute OPL projects (box classifiers)
+  * ```cd box-classifiers```
+  * ```cd  mixed-boxes-full-seltol-limit``` or ```cd mixed-boxes-full-seltol-ws-limit```
+  * ```oplrun -p .```
+    * In this project, 5-minute limit is set throught the command ```cplex.tilim = 60*5```, for example
   * Results are exported in the output directory in CSV format
