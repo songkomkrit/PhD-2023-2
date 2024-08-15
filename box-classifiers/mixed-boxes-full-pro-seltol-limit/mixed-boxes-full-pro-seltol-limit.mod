@@ -99,7 +99,7 @@ main {
 	//var M0 = 500;			// big-M (float)
 	var m0 = 0.01;			// small-m (float)
 	var pcont0 = 3;			// max number of cuts along continuous axis (integer)
-	var timelimit = 1;		// whether set Cplex time limit (1 = limit / 0 = not limit)
+	var timelimit = 0;		// whether set Cplex time limit (1 = limit / 0 = not limit)
 	
 	// Cplex limit parameters
 	if (timelimit == 1) {
