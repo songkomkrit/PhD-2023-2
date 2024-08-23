@@ -103,7 +103,7 @@ main {
 	
 	// Cplex limit parameters
 	if (timelimit == 1) {
-		var tlimin = 8;	// cplex time limit (in minutes)
+		var tlimin = 10;	// cplex time limit (in minutes)
 		var tlim = 60*tlimin;	// cplex time limit (in seconds)
 	}
 	else
