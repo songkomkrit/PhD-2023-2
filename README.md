@@ -22,5 +22,5 @@ PhD Dissertation Progress 2023/2
   * ```cd box-classifiers```
   * ```cd mixed-boxes-full-seltol-limit``` or ```cd mixed-boxes-full-seltol-ws-limit```
   * ```oplrun -p .```
-    * In this project, 5-minute limit is set throught the command ```cplex.tilim = 60*5```, for example
+    * In this project, 10-minute limit is set throught the command ```cplex.tilim = 60*10```, for example
   * Results are exported in the output directory in CSV format
